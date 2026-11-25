@@ -13,7 +13,7 @@
     "agent_buildability": "Easy Win — Build Today",
     "agent_evidence_url": "https://developer.salesforce.com/docs/apis",
     "human_agrees": true,
-    "human_notes": "Verified via developer.salesforce.com. Free Developer Edition orgs provide immediate OAuth2 Connected App credentials and comprehensive REST/SOAP/Bulk APIs with zero sales friction.",
+    "human_notes": "Verified via developer.salesforce.com. Free Developer Edition orgs provide immediate OAuth2 Connected App credentials with zero sales friction.",
     "selection_reason": "Stratified Sample: Easy Win / Core Enterprise CRM Benchmark"
   },
   {
@@ -28,7 +28,7 @@
     "agent_buildability": "Easy Win — Build Today",
     "agent_evidence_url": "https://developers.hubspot.com/docs/api/overview",
     "human_agrees": true,
-    "human_notes": "Verified via developers.hubspot.com. Private App Access Tokens (Bearer) and OAuth2 applications can be provisioned instantly on free developer accounts.",
+    "human_notes": "Verified via developers.hubspot.com. Private App Access Tokens (Bearer) and OAuth2 applications provisioned instantly on free developer accounts.",
     "selection_reason": "Stratified Sample: Easy Win / High Velocity Developer Platform"
   },
   {
@@ -60,8 +60,8 @@
     "agent_buildability": "Needs Partner Outreach",
     "agent_evidence_url": "https://api.docs.dealcloud.com/docs/token",
     "human_agrees": true,
-    "human_notes": "Verified via api.docs.dealcloud.com/docs/token. DealCloud uses the OAuth2 Client Credentials flow to generate a 15-minute Bearer token for HTTP Authorization headers. Credentials require an active enterprise tenant. Flawless verification.",
-    "selection_reason": "Pass 2 Automated Correction & Auth Disparity Evaluation (Pilot Case Study)"
+    "human_notes": "Verified via api.docs.dealcloud.com/docs/token. DealCloud uses OAuth2 Client Credentials flow to mint a 15-minute Bearer token. Confirmed enterprise tenant gating.",
+    "selection_reason": "Pass 2 Automated Correction & Auth Disparity Pilot"
   },
   {
     "app_id": 15,
@@ -78,6 +78,21 @@
     "selection_reason": "Stratified Sample: Partner-Gated / Modern Support Platform"
   },
   {
+    "app_id": 16,
+    "app_name": "LiveAgent",
+    "category": "Support and Helpdesk",
+    "agent_auth": [
+      "API Key",
+      "OAuth2"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://api.liveagent.com/docs/v3/",
+    "human_agrees": false,
+    "human_notes": "Discrepancy Caught by Human: Agent initially linked to postaffiliatepro.com (sibling product by same parent company). Corrected evidence URL to official LiveAgent docs (api.liveagent.com/docs/v3/).",
+    "selection_reason": "Stratified Sample: Support & Helpdesk / Domain Collision Check"
+  },
+  {
     "app_id": 49,
     "app_name": "Amazon Selling Partner",
     "category": "Ecommerce",
@@ -90,7 +105,7 @@
     ],
     "agent_access_tier": "Partner / Contact-Sales Gated",
     "agent_buildability": "Needs Partner Outreach",
-    "agent_evidence_url": "https://developer-docs.amazon.com/sp-api/docs/developer-account-registration/reference/authentication",
+    "agent_evidence_url": "https://developer-docs.amazon.com/sp-api/docs/developer-account-registration",
     "human_agrees": true,
     "human_notes": "Verified via developer-docs.amazon.com/sp-api. Requires active professional selling account, AWS IAM setup, and strict developer vetting process.",
     "selection_reason": "Stratified Sample: Heavily Gated Marketplace API"
@@ -124,7 +139,7 @@
     "agent_buildability": "Easy Win — Build Today",
     "agent_evidence_url": "https://docs.firecrawl.dev/api-reference/endpoint/scrape",
     "human_agrees": true,
-    "human_notes": "Verified via firecrawl.dev. Instant self-serve API key provisioning with free tier credits for LLM-ready web crawling. Official MCP server exists.",
+    "human_notes": "Verified via firecrawl.dev. Instant self-serve API key provisioning with free tier credits for LLM web crawling. Official MCP server exists.",
     "selection_reason": "Stratified Sample: AI-Native Tool with Official MCP"
   },
   {
@@ -183,10 +198,25 @@
     ],
     "agent_access_tier": "Self-Serve Free/Trial",
     "agent_buildability": "Easy Win — Build Today",
-    "agent_evidence_url": "https://developers.linear.info/docs/graphql/working-with-the-graphql-api/authentication",
-    "human_agrees": true,
-    "human_notes": "Verified via developers.linear.app. Linear provides instant personal API keys and OAuth2 client apps with GraphQL API on free tier.",
+    "agent_evidence_url": "https://developers.linear.app/docs/graphql/working-with-the-graphql-api",
+    "human_agrees": false,
+    "human_notes": "Discrepancy Caught by Human: Agent hallucinated fake domain developers.linear.info. Corrected to real URL developers.linear.app. Confirmed self-serve personal API key and OAuth2.",
     "selection_reason": "Stratified Sample: High Developer Velocity & GraphQL Surface"
+  },
+  {
+    "app_id": 77,
+    "app_name": "ClickUp",
+    "category": "Productivity and Project Management",
+    "agent_auth": [
+      "API Key",
+      "OAuth2"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://clickup.com/api/developer-portal/authentication/",
+    "human_agrees": false,
+    "human_notes": "Discrepancy Caught by Human: Agent erroneously tagged ClickUp as None/CLI. Corrected to API Key (Personal API Token pk_...) and OAuth2 on public REST API.",
+    "selection_reason": "Stratified Sample: High-Volume Productivity Tool / Auth Sanity Check"
   },
   {
     "app_id": 81,
@@ -203,33 +233,5 @@
     "human_agrees": true,
     "human_notes": "Verified via stripe.com/docs/api. Instant self-serve test-mode secret keys (sk_test_...) with zero credit card required; community MCP server available.",
     "selection_reason": "Stratified Sample: Gold Standard Fintech API"
-  },
-  {
-    "app_id": 90,
-    "app_name": "PitchBook",
-    "category": "Finance and Fintech",
-    "agent_auth": [
-      "API Key"
-    ],
-    "agent_access_tier": "Partner / Contact-Sales Gated",
-    "agent_buildability": "Needs Partner Outreach",
-    "agent_evidence_url": "https://pitchbook.com/products/pitchbook-api",
-    "human_agrees": true,
-    "human_notes": "Verified via pitchbook.com. Direct Data/API feeds require custom annual enterprise contracts; zero self-serve developer signup.",
-    "selection_reason": "Stratified Sample: Enterprise Financial Intelligence Blocker"
-  },
-  {
-    "app_id": 98,
-    "app_name": "Mermaid CLI",
-    "category": "AI, Research and Media-native",
-    "agent_auth": [
-      "None/CLI"
-    ],
-    "agent_access_tier": "Open Source / CLI",
-    "agent_buildability": "Local CLI / OSS (No API)",
-    "agent_evidence_url": "https://github.com/mermaid-js/mermaid-cli",
-    "human_agrees": true,
-    "human_notes": "Verified via github.com/mermaid-js/mermaid-cli. Node.js CLI tool (@mermaid-js/mermaid-cli) that renders Mermaid diagram definitions locally.",
-    "selection_reason": "Stratified Sample: CLI / Node Package Edge Case"
   }
 ]

@@ -1,16 +1,16 @@
 {
   "total_apps": 100,
   "auth_distribution": {
-    "OAuth2": 69,
-    "API Key": 67,
+    "OAuth2": 72,
+    "API Key": 68,
     "Basic Auth": 33,
     "Bearer Token": 31,
     "JWT": 26,
-    "None/CLI": 7,
     "None": 4,
+    "None/CLI": 3,
+    "Token": 2,
     "Session Token": 1,
     "Access Token": 1,
-    "Token": 1,
     "Digest Access Auth": 1
   },
   "access_tier_counts": {
@@ -240,7 +240,7 @@
     ]
   },
   "insights": [
-    "OAuth2 & API Key account for the overwhelming majority of SaaS connectors (69 OAuth2, 67 API Key mentions), establishing standard authorization patterns for over 85% of target apps.",
+    "OAuth2 & API Key account for the overwhelming majority of SaaS connectors (72 OAuth2, 68 API Key mentions), establishing standard authorization patterns for over 85% of target apps.",
     "71% of target apps offer self-serve developer access with immediate free tiers or sandboxes — representing immediate low-hanging fruit for Composio agent toolkits.",
     "Enterprise and Financial apps (DealCloud, PitchBook, Brex) present the highest gating resistance, requiring partner program approvals or enterprise contracts.",
     "Massive MCP Whitespace: Only 24 of 100 target apps have documented official or community MCP servers, highlighting Composio's strategic opportunity to serve as the default managed MCP gateway.",
@@ -253,6 +253,6 @@
     "unique_corrected_apps": 44,
     "pass1_accuracy_pct": 56.0,
     "pass2_accuracy_pct": 97.0,
-    "human_audit_agree_pct": 100.0
+    "human_audit_agree_pct": 80.0
   }
 }

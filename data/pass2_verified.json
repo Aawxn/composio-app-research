@@ -343,7 +343,7 @@
     "mcp_link": null,
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://api.postaffiliatepro.com/docs/v1/",
+    "evidence_url": "https://api.liveagent.com/docs/v3/",
     "verification_status": "corrected_pass2",
     "notes": null,
     "composio_status": "Not in Catalog"
@@ -484,7 +484,8 @@
     "category_num": 3,
     "one_liner": "Zoho Cliq is a team collaboration and chat software that provides instant messaging, audio/video conferencing, and process automation through bots and extensions.",
     "auth_methods": [
-      "None/CLI"
+      "OAuth2",
+      "Token"
     ],
     "access_tier": "Self-Serve Free/Trial",
     "api_surface": "REST, Broad",
@@ -492,7 +493,7 @@
     "mcp_link": null,
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://www.zoho.com/cliq/help/developer/",
+    "evidence_url": "https://www.zoho.com/cliq/help/rest-api/",
     "verification_status": "corrected_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['None/CLI']",
     "composio_status": "Already Supported"
@@ -638,7 +639,7 @@
     "mcp_link": null,
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://developer.vonage.com/en/api/reference/authentication",
+    "evidence_url": "https://developer.vonage.com/en/api",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['API Key']",
     "composio_status": "Not in Catalog"
@@ -691,7 +692,7 @@
     "category_num": 4,
     "one_liner": "LinkedIn Ads provides a marketing API for programmatic campaign management, ad creation, targeting, and analytics reporting.",
     "auth_methods": [
-      "None/CLI"
+      "OAuth2"
     ],
     "access_tier": "Partner / Contact-Sales Gated",
     "api_surface": "REST, Broad",
@@ -721,7 +722,7 @@
     "mcp_link": null,
     "buildability_verdict": "Buildable — Needs Paid/Test Account",
     "main_blocker": "API and developer account creation typically require a paid subscription or agency account, as free trials have restricted or no developer API access.",
-    "evidence_url": "https://highlevel.stoplight.io/docs/integrations/1e3b62f4bc7df-introduction/reference/authentication",
+    "evidence_url": "https://highlevel.stoplight.io/docs/integrations",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'API Key', 'JWT']",
     "composio_status": "Not in Catalog"
@@ -998,7 +999,7 @@
     "mcp_link": null,
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://api-docs.ecwid.com/reference/getting-started/reference/authentication",
+    "evidence_url": "https://api-docs.ecwid.com/reference/getting-started",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'JWT']",
     "composio_status": "Not in Catalog"
@@ -1042,7 +1043,7 @@
     "mcp_link": null,
     "buildability_verdict": "Needs Partner Outreach",
     "main_blocker": "Requires registering as an Amazon developer and going through an approval process (including security attestations and role-based access requests) to obtain production API credentials.",
-    "evidence_url": "https://developer-docs.amazon.com/sp-api/docs/developer-account-registration/reference/authentication",
+    "evidence_url": "https://developer-docs.amazon.com/sp-api/docs/developer-account-registration",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'API Key', 'Basic Auth', 'Bearer Token', 'JWT']",
     "composio_status": "Not in Catalog"
@@ -1074,7 +1075,6 @@
     "category_num": 6,
     "one_liner": "DataForSEO provides comprehensive SEO and digital marketing data APIs for search engine ranking, keyword research, backlinks, and on-page optimization.",
     "auth_methods": [
-      "None/CLI",
       "API Key",
       "Basic Auth"
     ],
@@ -1105,7 +1105,7 @@
     "mcp_link": null,
     "buildability_verdict": "Buildable — Needs Paid/Test Account",
     "main_blocker": "API access requires an active subscription to a paid SE Ranking plan (specifically Pro or Enterprise tiers) with additional limits based on plan levels.",
-    "evidence_url": "https://seranking.com/api.html/reference/authentication",
+    "evidence_url": "https://seranking.com/api.html",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['API Key', 'Basic Auth']",
     "composio_status": "Not in Catalog"
@@ -1322,7 +1322,7 @@
     "mcp_link": "https://github.com/modelcontextprotocol/servers/tree/main/src/vercel",
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://vercel.com/docs/rest-api/reference/authentication",
+    "evidence_url": "https://vercel.com/docs/rest-api",
     "verification_status": "corrected_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['API Key', 'Bearer Token', 'OAuth2']",
     "composio_status": "Already Supported"
@@ -1541,7 +1541,7 @@
     "mcp_link": "https://github.com/domdomegg/airtable-mcp-server",
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://airtable.com/developers/web/api/introduction/reference/authentication",
+    "evidence_url": "https://airtable.com/developers/web/api/introduction",
     "verification_status": "corrected_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'API Key', 'Basic Auth', 'Bearer Token']",
     "composio_status": "Already Supported"
@@ -1562,7 +1562,7 @@
     "mcp_link": "https://github.com/jerhadf/linear-mcp-server",
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://developers.linear.info/docs/graphql/working-with-the-graphql-api/authentication",
+    "evidence_url": "https://developers.linear.app/docs/graphql/working-with-the-graphql-api",
     "verification_status": "corrected_pass2",
     "notes": null,
     "composio_status": "Already Supported"
@@ -1585,7 +1585,7 @@
     "mcp_link": "https://github.com/modelcontextprotocol/servers/tree/main/src/jira",
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/reference/authentication",
+    "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'API Key', 'Basic Auth', 'JWT']",
     "composio_status": "Already Supported"
@@ -1633,7 +1633,7 @@
     "mcp_link": null,
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://developer.monday.com/api/docs/authentication/authentication",
+    "evidence_url": "https://developer.monday.com/api-reference/docs/authentication",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'API Key', 'Basic Auth', 'Bearer Token', 'JWT']",
     "composio_status": "Already Supported"
@@ -1645,7 +1645,8 @@
     "category_num": 8,
     "one_liner": "ClickUp is a cloud-based all-in-one productivity and project management platform that combines tasks, docs, goals, and chat into a single customizable workspace.",
     "auth_methods": [
-      "None/CLI"
+      "API Key",
+      "OAuth2"
     ],
     "access_tier": "Self-Serve Free/Trial",
     "api_surface": "REST, Broad",
@@ -1653,7 +1654,7 @@
     "mcp_link": "https://github.com/modelcontextprotocol/servers",
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://clickup.com/api/reference/authentication",
+    "evidence_url": "https://clickup.com/api/developer-portal/authentication/",
     "verification_status": "corrected_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['None/CLI']",
     "composio_status": "Already Supported"
@@ -1845,7 +1846,7 @@
     "mcp_link": null,
     "buildability_verdict": "Easy Win — Build Today",
     "main_blocker": "None",
-    "evidence_url": "https://developer.intuit.com/app/developer/qbo/docs/get-started/reference/authentication",
+    "evidence_url": "https://developer.intuit.com/app/developer/qbo/docs/get-started",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'API Key', 'Basic Auth']",
     "composio_status": "Already Supported"
@@ -1948,7 +1949,7 @@
     "mcp_link": null,
     "buildability_verdict": "Not an API Toolkit (CLI/Closed)",
     "main_blocker": "NotebookLM does not provide a public developer API or programmatic SDK for external integrations.",
-    "evidence_url": "https://support.google.com/notebooklm/reference/authentication",
+    "evidence_url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview",
     "verification_status": "verified_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['OAuth2', 'API Key', 'Basic Auth']",
     "composio_status": "Not in Catalog"
@@ -2075,7 +2076,7 @@
     "mcp_link": null,
     "buildability_verdict": "Not an API Toolkit (CLI/Closed)",
     "main_blocker": "The platform is distributed as a local command-line interface (CLI) and content suite rather than providing a remote public developer REST/GraphQL API with self-serve credentials.",
-    "evidence_url": "https://higgsfield.ai/cli/reference/authentication",
+    "evidence_url": "https://higgsfield.ai/cli",
     "verification_status": "corrected_pass2",
     "notes": "Pass 1 direct page parsing corroborated ground truth auth: ['API Key', 'JWT', 'None/CLI']",
     "composio_status": "Not in Catalog"

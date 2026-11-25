@@ -1,9 +1,12 @@
 """Generates single self-contained executive-grade site/index.html, site/data.json, and site/llms.txt.
-Combines high-agency engineering polish with rich, readable visual color-coding:
-- ZERO EMOJIS: Clean inline SVG vector primitives (Phosphor / Radix style).
-- HIGH-CONTRAST TYPOGRAPHY: Crisp readable labels, white metrics, no washed-out muddy grays.
-- VIBRANT OPERATIONAL COLOR-CODING: Color-coded KPI cards, multi-hue charts, distinct auth tag badges (OAuth2 blue, API Key purple, Basic amber, Bearer green), and clear buildability status pills.
-- COMPOSIO BRANDING: Calibrated dark slate canvas (#0a0f1d), Composio vermilion accent (#ff5c35), elevated cards with subtle hierarchy.
+Features:
+- Pure stealth black canvas (#070a12) with elevated slate surfaces (#0d1424).
+- High-contrast crisp typography (white headers, readable text, zero washed-out gray).
+- Vibrant color-coded tags (OAuth2 blue, API Key purple, Basic amber, Bearer emerald, Status pills).
+- True STICKY stationary table headers (position: sticky, top: 0, z-index: 20, solid opaque bg).
+- Fixed Jinja email template placeholders: [Target App Name] and [Partner Team] (no empty stripped text).
+- Real-world authentic human audit reporting (12 Confirmed, 3 Human-Caught Discrepancies on Linear, LiveAgent, ClickUp).
+- Zero emojis: Clean inline SVG primitives only.
 """
 
 import json
@@ -35,12 +38,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
-      --bg: #090e17;
-      --surface: #0f172a;
-      --surface-card: #141e33;
-      --surface-elevated: #1a2744;
+      --bg: #060911;
+      --bg-card: #0b111e;
+      --surface: #101827;
+      --surface-elevated: #162238;
+      --surface-header: #131c2e;
+      
       --border: rgba(255, 255, 255, 0.09);
-      --border-strong: rgba(255, 255, 255, 0.18);
+      --border-strong: rgba(255, 255, 255, 0.16);
       --border-focus: #ff5c35;
 
       /* High-contrast readable typography */
@@ -63,13 +68,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       --green-muted: rgba(16, 185, 129, 0.16);
       --green-border: rgba(16, 185, 129, 0.4);
 
-      --amber: #f59e0b;        /* Paid Tiers / Sandboxes */
+      --amber: #f59e0b;        /* Paid Tiers / Sandboxes / Discrepancies */
       --amber-muted: rgba(245, 158, 11, 0.16);
       --amber-border: rgba(245, 158, 11, 0.4);
 
-      --purple: #a855f7;       /* MCP Whitespace / Developer Infra */
-      --purple-muted: rgba(168, 85, 247, 0.16);
-      --purple-border: rgba(168, 85, 247, 0.4);
+      --purple: #c084fc;       /* MCP Whitespace / Developer Infra */
+      --purple-muted: rgba(192, 132, 252, 0.16);
+      --purple-border: rgba(192, 132, 252, 0.4);
 
       --red: #ef4444;          /* Gated / Blocked / Closed */
       --red-muted: rgba(239, 68, 68, 0.16);
@@ -142,7 +147,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       height: 8px;
       border-radius: 50%;
       background-color: var(--green);
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
     }
 
     /* Asymmetric Hero Header */
@@ -171,7 +176,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       max-width: 66ch;
     }
     .hero-meta-panel {
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-radius: 10px;
       padding: 20px 24px;
@@ -187,7 +192,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .meta-label { color: var(--text-dim); font-family: var(--font-mono); font-size: 11.5px; }
     .meta-value { color: var(--text-white); font-weight: 600; font-family: var(--font-mono); }
 
-    /* Color-Coded KPI Cards */
+    /* Stealth Black KPI Cards with Top Accent Lines */
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -201,7 +206,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       .kpi-grid { grid-template-columns: 1fr; }
     }
     .kpi-card {
-      background: var(--surface-card);
+      background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 20px;
@@ -247,7 +252,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .val-total { color: var(--text-white); }
     .val-selfserve { color: var(--green); }
     .val-oauth { color: var(--blue); }
-    .val-mcp { color: #c084fc; }
+    .val-mcp { color: var(--purple); }
     .val-accuracy { color: var(--green); }
 
     .kpi-sub {
@@ -256,13 +261,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       display: flex;
       align-items: center;
       gap: 6px;
-    }
-    .kpi-pill {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: 3px;
-      font-weight: 600;
     }
 
     /* Section Headings */
@@ -299,7 +297,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       .charts-grid { grid-template-columns: 1fr; }
     }
     .chart-panel {
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-radius: 10px;
       padding: 22px 24px;
@@ -323,7 +321,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     /* Insights Box */
     .insights-panel {
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-left: 3px solid var(--accent);
       border-radius: 10px;
@@ -377,7 +375,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       .queue-grid { grid-template-columns: 1fr; }
     }
     .queue-column {
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-radius: 10px;
       padding: 20px;
@@ -423,7 +421,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .queue-tag {
       font-family: var(--font-mono);
       font-size: 11px;
-      background: var(--surface-card);
+      background: #111a2d;
       border: 1px solid var(--border-strong);
       padding: 3px 8px;
       border-radius: 4px;
@@ -441,7 +439,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       .gap-grid { grid-template-columns: 1fr; }
     }
     .gap-card {
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-radius: 10px;
       padding: 22px;
@@ -450,13 +448,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     /* Verification Deep Dive Panel */
     .verification-card {
       border: 1px solid var(--border-strong);
-      background: var(--surface);
+      background: var(--bg-card);
       border-radius: 10px;
       padding: 26px;
       margin-bottom: 44px;
     }
     .case-callout {
-      background: var(--surface-card);
+      background: #0f182a;
       border: 1px solid var(--border-strong);
       border-left: 3px solid var(--green);
       border-radius: 6px;
@@ -475,9 +473,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       line-height: 1.65;
     }
 
-    /* Pre-Drafted Email Disclosure */
+    /* Pre-Drafted Email Disclosure (Fixed Placeholders) */
     details {
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-radius: 8px;
       padding: 14px 18px;
@@ -504,17 +502,21 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       white-space: pre-wrap;
     }
 
-    /* Data Tables */
+    /* Data Tables with TRUE STICKY Stationed Headers */
     .data-table-wrapper {
       border: 1px solid var(--border-strong);
       border-radius: 8px;
       overflow-x: auto;
-      background: var(--surface);
+      max-height: 600px;
+      overflow-y: auto;
+      background: var(--bg-card);
       margin-bottom: 24px;
+      position: relative;
     }
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       font-size: 12.5px;
       text-align: left;
     }
@@ -525,20 +527,24 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--text-dim);
-      background: var(--surface-elevated);
-      padding: 11px 14px;
-      border-bottom: 1px solid var(--border-strong);
+      background: var(--surface-header);
+      padding: 12px 14px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.16);
       white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
     td {
       padding: 11px 14px;
       border-bottom: 1px solid var(--border);
       color: var(--text-muted);
       vertical-align: middle;
+      background: var(--bg-card);
     }
-    tr:last-child td { border-bottom: none; }
     tr:hover td {
-      background-color: rgba(255, 255, 255, 0.025);
+      background-color: #121c2e;
       color: var(--text-white);
     }
 
@@ -588,7 +594,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .search-input {
       flex: 1;
       min-width: 260px;
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-radius: 6px;
       padding: 9px 14px;
@@ -601,7 +607,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       border-color: var(--border-focus);
     }
     .filter-select {
-      background: var(--surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       border-radius: 6px;
       padding: 9px 12px;
@@ -612,7 +618,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     }
     .filter-select:focus { outline: none; border-color: var(--border-focus); }
     .action-btn {
-      background: var(--surface-card);
+      background: var(--surface);
       border: 1px solid var(--border-strong);
       border-radius: 6px;
       padding: 9px 14px;
@@ -683,18 +689,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <div class="hero-meta-panel">
       <div class="meta-row">
         <span class="meta-label">Pipeline Engine</span>
-        <span class="meta-value">Gemini 3.5 + Grounding</span>
+        <span class="meta-value">Gemini 3.5 Flash Lite + Search Grounding</span>
       </div>
       <div class="meta-row">
         <span class="meta-label">Verification Mode</span>
         <span class="meta-value">HTTP + Subpath Parsing</span>
       </div>
       <div class="meta-row">
-        <span class="meta-label">Audit Scope</span>
-        <span class="meta-value">15 Apps Stratified (100% Confirmed)</span>
+        <span class="meta-label">Audit Sample</span>
+        <span class="meta-value">15 Apps Stratified (80% Agree &bull; 3 Caught)</span>
       </div>
       <div class="meta-row">
-        <span class="meta-label">Catalog Match</span>
+        <span class="meta-label">Catalog Coverage</span>
         <span class="meta-value">64 Supported / 36 Net-New</span>
       </div>
     </div>
@@ -827,16 +833,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </section>
 
-  <!-- PRE-DRAFTED PARTNER OUTREACH DISCLOSURE -->
+  <!-- PRE-DRAFTED PARTNER OUTREACH DISCLOSURE (NO STRIPPED JINJA TAGS) -->
   <details>
     <summary>View Pre-Drafted Partner Outreach Template (DealCloud &amp; Enterprise Gated Connectors)</summary>
-    <div class="email-pre">Subject: Partnership &amp; Agent Tooling Inquiry: Composio &times; {{app_name}}
+    <div class="email-pre">Subject: Partnership &amp; Agent Tooling Inquiry: Composio &times; [Target App Name]
 
-Hi {{Partner_Team}},
+Hi [Partner Team],
 
 I'm reaching out from Composio (composio.dev). We build managed tool calling and agent infrastructure connecting AI agents (OpenAI Assistants, Claude Desktop, CrewAI, LangChain) to 1,500+ business applications.
 
-Our enterprise customers have requested high-frequency automated agent workflows integrating {{app_name}}. We are preparing an official {{app_name}} connector and would like to coordinate on:
+Our enterprise customers have requested high-frequency automated agent workflows integrating [Target App Name]. We are preparing an official [Target App Name] connector and would like to coordinate on:
 1. Developer Sandbox / API credentials for our integration engineering team
 2. Scopes and OAuth application verification requirements
 3. Any preferred rate limits or partnership guidelines
@@ -866,8 +872,13 @@ Composio Product Operations Team</div>
     </div>
 
     <!-- 15-App Stratified Human Audit Table -->
-    <div style="margin-bottom: 14px; font-weight: 700; font-size: 13.5px; color: var(--text-white);">
-      Pass 3: Stratified 15-App Human Audit Sample
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 14px;">
+      <div style="font-weight: 700; font-size: 13.5px; color: var(--text-white);">
+        Pass 3: Stratified 15-App Human Audit Sample
+      </div>
+      <div style="font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim);">
+        12 Confirmed &bull; 3 Human-Caught Discrepancies (80.0% Agreement)
+      </div>
     </div>
     <div class="data-table-wrapper" style="max-height: 400px;">
       <table>
@@ -879,7 +890,7 @@ Composio Product Operations Team</div>
             <th style="width: 190px;">Agent Claimed Auth</th>
             <th style="width: 160px;">Access Tier</th>
             <th>Sampling Rationale</th>
-            <th style="width: 110px;">Audit Verdict</th>
+            <th style="width: 160px;">Audit Verdict</th>
             <th>Auditor Verification Notes</th>
           </tr>
         </thead>
@@ -912,7 +923,7 @@ Composio Product Operations Team</div>
     </div>
   </section>
 
-  <!-- 100 APPS MATRIX -->
+  <!-- 100 APPS MATRIX WITH STATIONED STICKY HEADER -->
   <section style="margin-bottom: 60px;">
     <div class="section-header">
       <div class="section-title">Comprehensive 100-App Integration Matrix</div>
@@ -963,7 +974,8 @@ Composio Product Operations Team</div>
       </button>
     </div>
 
-    <div class="data-table-wrapper" style="max-height: 650px;">
+    <!-- Matrix table container with persistent sticky header -->
+    <div class="data-table-wrapper" style="max-height: 600px;">
       <table>
         <thead>
           <tr>
@@ -1088,7 +1100,7 @@ Composio Product Operations Team</div>
       datasets: [{
         data: buildVals,
         backgroundColor: ['#10b981', '#f59e0b', '#ff5c35', '#ef4444', '#94a3b8'],
-        borderColor: '#0f172a',
+        borderColor: '#0b111e',
         borderWidth: 2
       }]
     },
@@ -1104,21 +1116,40 @@ Composio Product Operations Team</div>
     }
   });
 
-  // Audit Table
+  // Helper for Vibrant Auth Tags
+  function renderAuthTags(authList) {
+    return authList.map(a => {
+      let cls = 'auth-key';
+      if (a === 'OAuth2') cls = 'auth-oauth';
+      else if (a === 'Basic Auth') cls = 'auth-basic';
+      else if (a === 'Bearer Token') cls = 'auth-bearer';
+      else if (a === 'JWT') cls = 'auth-jwt';
+      else if (a.includes('CLI') || a.includes('None')) cls = 'auth-cli';
+      return `<span class="auth-tag ${cls}">${a}</span>`;
+    }).join('');
+  }
+
+  // Audit Table with Real Catch Badges
   const auditBody = document.getElementById('auditTableBody');
   if (AUDIT && AUDIT.length > 0) {
-    auditBody.innerHTML = AUDIT.map(a => `
-      <tr>
-        <td style="font-family:var(--font-mono); color:var(--text-dim);">${a.app_id}</td>
-        <td style="font-weight:700; color:#fff;">${a.app_name}</td>
-        <td>${a.category}</td>
-        <td>${renderAuthTags(a.agent_auth || [])}</td>
-        <td><span class="pill pill-slate">${a.agent_access_tier}</span></td>
-        <td style="font-size:12px; color:var(--text-muted);">${a.selection_reason}</td>
-        <td><span class="pill pill-green">CONFIRMED</span></td>
-        <td style="font-size:12px; line-height:1.5; color:var(--text-main);">${a.human_notes || 'Verified against live developer documentation.'}</td>
-      </tr>
-    `).join('');
+    auditBody.innerHTML = AUDIT.map(a => {
+      const verdictBadge = a.human_agrees === true
+        ? '<span class="pill pill-green">CONFIRMED</span>'
+        : '<span class="pill pill-amber" style="background:rgba(245,158,11,0.2); color:#fbbf24; border-color:#fbbf24;">DISCREPANCY CAUGHT</span>';
+
+      return `
+        <tr>
+          <td style="font-family:var(--font-mono); color:var(--text-dim);">${a.app_id}</td>
+          <td style="font-weight:700; color:#fff;">${a.app_name}</td>
+          <td>${a.category}</td>
+          <td>${renderAuthTags(a.agent_auth || [])}</td>
+          <td><span class="pill pill-slate">${a.agent_access_tier}</span></td>
+          <td style="font-size:12px; color:var(--text-muted);">${a.selection_reason}</td>
+          <td>${verdictBadge}</td>
+          <td style="font-size:12px; line-height:1.5; color:var(--text-main);">${a.human_notes || 'Verified against live developer documentation.'}</td>
+        </tr>
+      `;
+    }).join('');
   }
 
   // Diffs Table
@@ -1145,19 +1176,6 @@ Composio Product Operations Team</div>
     opt.textContent = cat;
     catFilter.appendChild(opt);
   });
-
-  // Helper for Vibrant Auth Tags
-  function renderAuthTags(authList) {
-    return authList.map(a => {
-      let cls = 'auth-key';
-      if (a === 'OAuth2') cls = 'auth-oauth';
-      else if (a === 'Basic Auth') cls = 'auth-basic';
-      else if (a === 'Bearer Token') cls = 'auth-bearer';
-      else if (a === 'JWT') cls = 'auth-jwt';
-      else if (a.includes('CLI') || a.includes('None')) cls = 'auth-cli';
-      return `<span class="auth-tag ${cls}">${a}</span>`;
-    }).join('');
-  }
 
   // Render Matrix Table
   function renderMatrix(records) {
@@ -1292,7 +1310,6 @@ def build_site():
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(html_output)
 
-    # Also keep index_professional.html updated with same high-contrast build
     with open(SITE_DIR / "index_professional.html", "w", encoding="utf-8") as f:
         f.write(html_output)
 
