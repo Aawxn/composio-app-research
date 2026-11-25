@@ -1,0 +1,235 @@
+[
+  {
+    "app_id": 1,
+    "app_name": "Salesforce",
+    "category": "CRM and Sales",
+    "agent_auth": [
+      "OAuth2",
+      "JWT",
+      "Bearer Token",
+      "Session Token"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://developer.salesforce.com/docs/apis",
+    "human_agrees": true,
+    "human_notes": "Verified via developer.salesforce.com. Free Developer Edition orgs provide immediate OAuth2 Connected App credentials and comprehensive REST/SOAP/Bulk APIs with zero sales friction.",
+    "selection_reason": "Stratified Sample: Easy Win / Core Enterprise CRM Benchmark"
+  },
+  {
+    "app_id": 2,
+    "app_name": "HubSpot",
+    "category": "CRM and Sales",
+    "agent_auth": [
+      "OAuth2",
+      "API Key"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://developers.hubspot.com/docs/api/overview",
+    "human_agrees": true,
+    "human_notes": "Verified via developers.hubspot.com. Private App Access Tokens (Bearer) and OAuth2 applications can be provisioned instantly on free developer accounts.",
+    "selection_reason": "Stratified Sample: Easy Win / High Velocity Developer Platform"
+  },
+  {
+    "app_id": 9,
+    "app_name": "Copper",
+    "category": "CRM and Sales",
+    "agent_auth": [
+      "API Key",
+      "OAuth2"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://developer.copper.com/developer-api/authentication",
+    "human_agrees": true,
+    "human_notes": "Verified via developer.copper.com. 14-day free trial gives access to user API keys and OAuth2 apps for Google Workspace CRM integration.",
+    "selection_reason": "Stratified Sample: Dual Auth (API Key + OAuth2) check"
+  },
+  {
+    "app_id": 10,
+    "app_name": "DealCloud",
+    "category": "CRM and Sales",
+    "agent_auth": [
+      "API Key",
+      "Basic Auth",
+      "OAuth2",
+      "Bearer Token"
+    ],
+    "agent_access_tier": "Partner / Contact-Sales Gated",
+    "agent_buildability": "Needs Partner Outreach",
+    "agent_evidence_url": "https://api.docs.dealcloud.com/docs/token",
+    "human_agrees": true,
+    "human_notes": "Verified via api.docs.dealcloud.com/docs/token. DealCloud uses the OAuth2 Client Credentials flow to generate a 15-minute Bearer token for HTTP Authorization headers. Credentials require an active enterprise tenant. Flawless verification.",
+    "selection_reason": "Pass 2 Automated Correction & Auth Disparity Evaluation (Pilot Case Study)"
+  },
+  {
+    "app_id": 15,
+    "app_name": "Pylon",
+    "category": "Support and Helpdesk",
+    "agent_auth": [
+      "API Key"
+    ],
+    "agent_access_tier": "Partner / Contact-Sales Gated",
+    "agent_buildability": "Needs Partner Outreach",
+    "agent_evidence_url": "https://usepylon.com/pricing",
+    "human_agrees": true,
+    "human_notes": "Verified via docs.usepylon.com. B2B customer operations platform requiring demo and contract before API access and webhook endpoints are enabled.",
+    "selection_reason": "Stratified Sample: Partner-Gated / Modern Support Platform"
+  },
+  {
+    "app_id": 49,
+    "app_name": "Amazon Selling Partner",
+    "category": "Ecommerce",
+    "agent_auth": [
+      "OAuth2",
+      "API Key",
+      "Basic Auth",
+      "Bearer Token",
+      "JWT"
+    ],
+    "agent_access_tier": "Partner / Contact-Sales Gated",
+    "agent_buildability": "Needs Partner Outreach",
+    "agent_evidence_url": "https://developer-docs.amazon.com/sp-api/docs/developer-account-registration/reference/authentication",
+    "human_agrees": true,
+    "human_notes": "Verified via developer-docs.amazon.com/sp-api. Requires active professional selling account, AWS IAM setup, and strict developer vetting process.",
+    "selection_reason": "Stratified Sample: Heavily Gated Marketplace API"
+  },
+  {
+    "app_id": 50,
+    "app_name": "fanbasis",
+    "category": "Ecommerce",
+    "agent_auth": [
+      "None"
+    ],
+    "agent_access_tier": "Partner / Contact-Sales Gated",
+    "agent_buildability": "Not an API Toolkit (CLI/Closed)",
+    "agent_evidence_url": "https://fanbasis.com/",
+    "human_agrees": true,
+    "human_notes": "Verified via fanbasis.com. Creator monetization platform with no publicly documented developer REST API; agent correctly identified as not buildable via standard API.",
+    "selection_reason": "Stratified Sample: Edge Case / Non-API SaaS Detection"
+  },
+  {
+    "app_id": 56,
+    "app_name": "Firecrawl",
+    "category": "Data, SEO and Scraping",
+    "agent_auth": [
+      "OAuth2",
+      "API Key",
+      "Basic Auth",
+      "Bearer Token",
+      "JWT"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://docs.firecrawl.dev/api-reference/endpoint/scrape",
+    "human_agrees": true,
+    "human_notes": "Verified via firecrawl.dev. Instant self-serve API key provisioning with free tier credits for LLM-ready web crawling. Official MCP server exists.",
+    "selection_reason": "Stratified Sample: AI-Native Tool with Official MCP"
+  },
+  {
+    "app_id": 58,
+    "app_name": "Sherlock",
+    "category": "Data, SEO and Scraping",
+    "agent_auth": [
+      "None/CLI"
+    ],
+    "agent_access_tier": "Open Source / CLI",
+    "agent_buildability": "Local CLI / OSS (No API)",
+    "agent_evidence_url": "https://github.com/sherlock-project/sherlock",
+    "human_agrees": true,
+    "human_notes": "Verified via github.com/sherlock-project/sherlock. Local Python OSINT CLI tool, not a hosted SaaS REST API; correctly classified as local CLI/OSS.",
+    "selection_reason": "Stratified Sample: CLI / Open-Source Tool Edge Case"
+  },
+  {
+    "app_id": 61,
+    "app_name": "GitHub",
+    "category": "Developer, Infra and Data platforms",
+    "agent_auth": [
+      "OAuth2",
+      "Basic Auth",
+      "Bearer Token",
+      "JWT"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://docs.github.com/en/rest/authentication",
+    "human_agrees": true,
+    "human_notes": "Verified via docs.github.com/rest. Instant personal access tokens (classic/fine-grained) and GitHub Apps OAuth2. Official MCP server available.",
+    "selection_reason": "Stratified Sample: Gold Standard Developer Platform & MCP"
+  },
+  {
+    "app_id": 71,
+    "app_name": "Notion",
+    "category": "Productivity and Project Management",
+    "agent_auth": [
+      "OAuth2",
+      "Bearer Token"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://developers.notion.com/reference/auth",
+    "human_agrees": true,
+    "human_notes": "Verified via developers.notion.com. Internal integrations yield instant Bearer secret tokens on free tier; public integrations support standard OAuth2.",
+    "selection_reason": "Stratified Sample: Easy Win / Productivity Leader"
+  },
+  {
+    "app_id": 73,
+    "app_name": "Linear",
+    "category": "Productivity and Project Management",
+    "agent_auth": [
+      "OAuth2",
+      "API Key"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://developers.linear.info/docs/graphql/working-with-the-graphql-api/authentication",
+    "human_agrees": true,
+    "human_notes": "Verified via developers.linear.app. Linear provides instant personal API keys and OAuth2 client apps with GraphQL API on free tier.",
+    "selection_reason": "Stratified Sample: High Developer Velocity & GraphQL Surface"
+  },
+  {
+    "app_id": 81,
+    "app_name": "Stripe",
+    "category": "Finance and Fintech",
+    "agent_auth": [
+      "API Key",
+      "Basic Auth",
+      "Bearer Token"
+    ],
+    "agent_access_tier": "Self-Serve Free/Trial",
+    "agent_buildability": "Easy Win — Build Today",
+    "agent_evidence_url": "https://docs.stripe.com/api/authentication",
+    "human_agrees": true,
+    "human_notes": "Verified via stripe.com/docs/api. Instant self-serve test-mode secret keys (sk_test_...) with zero credit card required; community MCP server available.",
+    "selection_reason": "Stratified Sample: Gold Standard Fintech API"
+  },
+  {
+    "app_id": 90,
+    "app_name": "PitchBook",
+    "category": "Finance and Fintech",
+    "agent_auth": [
+      "API Key"
+    ],
+    "agent_access_tier": "Partner / Contact-Sales Gated",
+    "agent_buildability": "Needs Partner Outreach",
+    "agent_evidence_url": "https://pitchbook.com/products/pitchbook-api",
+    "human_agrees": true,
+    "human_notes": "Verified via pitchbook.com. Direct Data/API feeds require custom annual enterprise contracts; zero self-serve developer signup.",
+    "selection_reason": "Stratified Sample: Enterprise Financial Intelligence Blocker"
+  },
+  {
+    "app_id": 98,
+    "app_name": "Mermaid CLI",
+    "category": "AI, Research and Media-native",
+    "agent_auth": [
+      "None/CLI"
+    ],
+    "agent_access_tier": "Open Source / CLI",
+    "agent_buildability": "Local CLI / OSS (No API)",
+    "agent_evidence_url": "https://github.com/mermaid-js/mermaid-cli",
+    "human_agrees": true,
+    "human_notes": "Verified via github.com/mermaid-js/mermaid-cli. Node.js CLI tool (@mermaid-js/mermaid-cli) that renders Mermaid diagram definitions locally.",
+    "selection_reason": "Stratified Sample: CLI / Node Package Edge Case"
+  }
+]

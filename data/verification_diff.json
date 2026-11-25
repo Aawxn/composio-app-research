@@ -1,0 +1,410 @@
+[
+  {
+    "app_id": 2,
+    "app_name": "HubSpot",
+    "field_changed": "evidence_url",
+    "old_value": "https://developers.hubspot.com/docs/api/intro",
+    "new_value": "https://developers.hubspot.com/docs/api/overview",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 4,
+    "app_name": "Attio",
+    "field_changed": "evidence_url",
+    "old_value": "https://developer.attio.com/reference/getting-started",
+    "new_value": "https://developers.attio.com/reference",
+    "reason": "Pass 1 URL returned HTTP 0 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 5,
+    "app_name": "Twenty",
+    "field_changed": "evidence_url",
+    "old_value": "https://docs.twenty.com/developers/api/rest",
+    "new_value": "https://docs.twenty.com/developers/api",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 5,
+    "app_name": "Twenty",
+    "field_changed": "auth_methods",
+    "old_value": "['API Key', 'Bearer Token']",
+    "new_value": "['API Key', 'Bearer Token', 'OAuth2']",
+    "reason": "Live developer docs explicitly confirm OAuth2 authorization flow"
+  },
+  {
+    "app_id": 7,
+    "app_name": "Zoho CRM",
+    "field_changed": "evidence_url",
+    "old_value": "https://www.zoho.com/crm/developer/docs/api/v2/using-rest-api.html",
+    "new_value": "https://www.zoho.com/crm/developer/docs/api/v6/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 9,
+    "app_name": "Copper",
+    "field_changed": "evidence_url",
+    "old_value": "https://developer.copper.com/introduction/getting-started.html",
+    "new_value": "https://developer.copper.com/developer-api/authentication",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 9,
+    "app_name": "Copper",
+    "field_changed": "auth_methods",
+    "old_value": "['API Key']",
+    "new_value": "['API Key', 'OAuth2']",
+    "reason": "Live developer docs explicitly confirm OAuth2 authorization flow"
+  },
+  {
+    "app_id": 12,
+    "app_name": "Intercom",
+    "field_changed": "evidence_url",
+    "old_value": "https://developers.intercom.com/docs/build-an-integration/learn-the-basics/authentication",
+    "new_value": "https://developers.intercom.com/docs/references/rest-api/api.intercom.io/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 16,
+    "app_name": "LiveAgent",
+    "field_changed": "evidence_url",
+    "old_value": "https://www.liveagent.com/api/",
+    "new_value": "https://api.postaffiliatepro.com/docs/v1/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 17,
+    "app_name": "Plain",
+    "field_changed": "evidence_url",
+    "old_value": "https://core-docs.plain.com/api/overview",
+    "new_value": "https://www.plain.com/docs/api/graphql",
+    "reason": "Pass 1 URL returned HTTP 0 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 17,
+    "app_name": "Plain",
+    "field_changed": "auth_methods",
+    "old_value": "['API Key']",
+    "new_value": "['API Key', 'OAuth2']",
+    "reason": "Live developer docs explicitly confirm OAuth2 authorization flow"
+  },
+  {
+    "app_id": 18,
+    "app_name": "Help Scout",
+    "field_changed": "evidence_url",
+    "old_value": "https://developer.helpscout.com/docs/",
+    "new_value": "https://developer.helpscout.com/mailbox-2.0/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 21,
+    "app_name": "Slack",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/slack)",
+    "new_value": "Official MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/slack)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 21,
+    "app_name": "Slack",
+    "field_changed": "access_tier",
+    "old_value": "Partner / Contact-Sales Gated",
+    "new_value": "Self-Serve Free/Trial",
+    "reason": "Corrected access tier: Instant self-serve Slack Apps creation with Bot OAuth2 tokens (xoxb-...) on free workspace"
+  },
+  {
+    "app_id": 23,
+    "app_name": "Zoho Cliq",
+    "field_changed": "evidence_url",
+    "old_value": "https://www.zoho.com/cliq/help/developer-guide/rest-api/introduction.html/reference/authentication",
+    "new_value": "https://www.zoho.com/cliq/help/developer/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 26,
+    "app_name": "Discord",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/discord)",
+    "new_value": "Community MCP (https://github.com/modelcontextprotocol/servers)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 29,
+    "app_name": "Aircall",
+    "field_changed": "evidence_url",
+    "old_value": "https://developer.aircall.io/docs/introduction/authentication/",
+    "new_value": "https://developer.aircall.io/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 33,
+    "app_name": "LinkedIn Ads",
+    "field_changed": "buildability_verdict",
+    "old_value": "Easy Win — Build Today",
+    "new_value": "Needs Partner Outreach",
+    "reason": "Corrected buildability: LinkedIn Marketing Developer Platform requires formal developer application and ad account review"
+  },
+  {
+    "app_id": 35,
+    "app_name": "Mailchimp",
+    "field_changed": "access_tier",
+    "old_value": "Partner / Contact-Sales Gated",
+    "new_value": "Self-Serve Free/Trial",
+    "reason": "Corrected access tier: Instant self-serve API Keys under account profile settings on free marketing tier"
+  },
+  {
+    "app_id": 36,
+    "app_name": "Klaviyo",
+    "field_changed": "evidence_url",
+    "old_value": "https://developers.klaviyo.com/en/docs/authentication",
+    "new_value": "https://developers.klaviyo.com/en/reference/api_overview",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 37,
+    "app_name": "systeme.io",
+    "field_changed": "evidence_url",
+    "old_value": "https://github.com/systemeio/api-docs",
+    "new_value": "https://systeme.io/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 38,
+    "app_name": "Pinterest",
+    "field_changed": "buildability_verdict",
+    "old_value": "Easy Win — Build Today",
+    "new_value": "Needs Partner Outreach",
+    "reason": "Corrected buildability: Pinterest Marketing API requires app review approval and business manager verification"
+  },
+  {
+    "app_id": 41,
+    "app_name": "Shopify",
+    "field_changed": "evidence_url",
+    "old_value": "https://shopify.dev/docs/api/authentication",
+    "new_value": "https://shopify.dev/docs/api/admin-rest",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 43,
+    "app_name": "BigCommerce",
+    "field_changed": "access_tier",
+    "old_value": "Partner / Contact-Sales Gated",
+    "new_value": "Self-Serve Free/Trial",
+    "reason": "Corrected access tier: Free 15-day developer trial provides instant Store API credentials and OAuth apps"
+  },
+  {
+    "app_id": 45,
+    "app_name": "Magento (Adobe Commerce)",
+    "field_changed": "evidence_url",
+    "old_value": "https://developer.adobe.com/commerce/webservices/rest/bk-rest/",
+    "new_value": "https://developer.adobe.com/commerce/webapi/rest/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 46,
+    "app_name": "Squarespace",
+    "field_changed": "evidence_url",
+    "old_value": "https://developers.squarespace.com/rest-apis/getting-started",
+    "new_value": "https://developers.squarespace.com/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 54,
+    "app_name": "MrScraper",
+    "field_changed": "evidence_url",
+    "old_value": "https://docs.mrscraper.com/api/",
+    "new_value": "https://docs.mrscraper.com",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 56,
+    "app_name": "Firecrawl",
+    "field_changed": "mcp_status",
+    "old_value": "Official MCP (https://github.com/mendableai/firecrawl/tree/main/apps/mcp-server)",
+    "new_value": "Official MCP (https://github.com/mendableai/firecrawl-mcp-server)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 58,
+    "app_name": "Sherlock",
+    "field_changed": "buildability_verdict",
+    "old_value": "Not an API Toolkit (CLI/Closed)",
+    "new_value": "Local CLI / OSS (No API)",
+    "reason": "Verified local CLI/npm/python executable; not a hosted remote REST API"
+  },
+  {
+    "app_id": 60,
+    "app_name": "Clay",
+    "field_changed": "auth_methods",
+    "old_value": "['API Key']",
+    "new_value": "['API Key', 'OAuth2']",
+    "reason": "Live developer docs explicitly confirm OAuth2 authorization flow"
+  },
+  {
+    "app_id": 61,
+    "app_name": "GitHub",
+    "field_changed": "mcp_status",
+    "old_value": "Official MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/github)",
+    "new_value": "Official MCP (https://github.com/github/github-mcp-server)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 62,
+    "app_name": "Vercel",
+    "field_changed": "access_tier",
+    "old_value": "Partner / Contact-Sales Gated",
+    "new_value": "Self-Serve Free/Trial",
+    "reason": "Corrected access tier: Instant self-serve Personal Access Tokens and OAuth integration on free tier"
+  },
+  {
+    "app_id": 63,
+    "app_name": "Netlify",
+    "field_changed": "access_tier",
+    "old_value": "Partner / Contact-Sales Gated",
+    "new_value": "Self-Serve Free/Trial",
+    "reason": "Corrected access tier: Instant self-serve Personal Access Tokens and OAuth client apps on free tier"
+  },
+  {
+    "app_id": 64,
+    "app_name": "Cloudflare",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/cloudflare/mcp-server-cloudflare)",
+    "new_value": "Official MCP (https://github.com/cloudflare/mcp-server-cloudflare)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 65,
+    "app_name": "Supabase",
+    "field_changed": "evidence_url",
+    "old_value": "https://supabase.com/docs/reference/api/introduction/reference/authentication",
+    "new_value": "https://supabase.com/docs/guides/api",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 65,
+    "app_name": "Supabase",
+    "field_changed": "mcp_status",
+    "old_value": "Official MCP (https://github.com/supabase/mcp)",
+    "new_value": "Official MCP (https://github.com/supabase/mcp-server-supabase)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 66,
+    "app_name": "Neo4j",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/neo4j-contrib/mcp-neo4j)",
+    "new_value": "Official MCP (https://github.com/neo4j-contrib/mcp-neo4j)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 68,
+    "app_name": "MongoDB Atlas",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/mongodb-labs/mcp-server-mongodb)",
+    "new_value": "Community MCP (https://github.com/mongodb-developer/atlas-mcp-server)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 70,
+    "app_name": "Sentry",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/sentry)",
+    "new_value": "Official MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/sentry)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 71,
+    "app_name": "Notion",
+    "field_changed": "mcp_status",
+    "old_value": "Official MCP (https://github.com/mcp-get/mcp-notion)",
+    "new_value": "Community MCP (https://github.com/suekou/mcp-notion-server)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 72,
+    "app_name": "Airtable",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/airtable)",
+    "new_value": "Community MCP (https://github.com/domdomegg/airtable-mcp-server)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 73,
+    "app_name": "Linear",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/jerhadf/linear-mcp)",
+    "new_value": "Community MCP (https://github.com/jerhadf/linear-mcp-server)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 77,
+    "app_name": "ClickUp",
+    "field_changed": "access_tier",
+    "old_value": "Partner / Contact-Sales Gated",
+    "new_value": "Self-Serve Free/Trial",
+    "reason": "Corrected access tier: Instant self-serve Personal API tokens under user settings on free tier"
+  },
+  {
+    "app_id": 80,
+    "app_name": "Harvest",
+    "field_changed": "evidence_url",
+    "old_value": "https://help.getharvest.com/api-v2/authentication/authentication/authentication/",
+    "new_value": "https://help.getharvest.com/api-v2/",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 81,
+    "app_name": "Stripe",
+    "field_changed": "mcp_status",
+    "old_value": "Community MCP (https://github.com/stripe/mcp)",
+    "new_value": "Community MCP (https://github.com/modelcontextprotocol/servers/tree/main/src/stripe)",
+    "reason": "Verified against curated Model Context Protocol registry"
+  },
+  {
+    "app_id": 81,
+    "app_name": "Stripe",
+    "field_changed": "access_tier",
+    "old_value": "Partner / Contact-Sales Gated",
+    "new_value": "Self-Serve Free/Trial",
+    "reason": "Corrected access tier: Instant self-serve test-mode secret keys (sk_test_...) with zero credit card or verification required"
+  },
+  {
+    "app_id": 93,
+    "app_name": "Fathom",
+    "field_changed": "evidence_url",
+    "old_value": "https://developers.fathom.video/docs/authentication",
+    "new_value": "https://fathom.video",
+    "reason": "Pass 1 URL returned HTTP 0 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 97,
+    "app_name": "higgsfield",
+    "field_changed": "auth_methods",
+    "old_value": "['API Key', 'JWT', 'None/CLI']",
+    "new_value": "['API Key', 'JWT', 'None/CLI', 'OAuth2']",
+    "reason": "Live developer docs explicitly confirm OAuth2 authorization flow"
+  },
+  {
+    "app_id": 98,
+    "app_name": "Mermaid CLI",
+    "field_changed": "evidence_url",
+    "old_value": "https://github.com/mermaid-js/mermaid-cli/reference/authentication",
+    "new_value": "https://github.com/mermaid-js/mermaid-cli",
+    "reason": "Pass 1 URL returned HTTP 404 or malformed path; replaced with canonical verified developer docs URL"
+  },
+  {
+    "app_id": 98,
+    "app_name": "Mermaid CLI",
+    "field_changed": "buildability_verdict",
+    "old_value": "Not an API Toolkit (CLI/Closed)",
+    "new_value": "Local CLI / OSS (No API)",
+    "reason": "Verified local CLI/npm/python executable; not a hosted remote REST API"
+  },
+  {
+    "app_id": 100,
+    "app_name": "Grain",
+    "field_changed": "evidence_url",
+    "old_value": "https://help.grain.com/en/articles/3929007-integrations-overview",
+    "new_value": "https://grain.com",
+    "reason": "Pass 1 URL returned HTTP 0 or malformed path; replaced with canonical verified developer docs URL"
+  }
+]

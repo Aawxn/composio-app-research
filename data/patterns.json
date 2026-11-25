@@ -1,0 +1,258 @@
+{
+  "total_apps": 100,
+  "auth_distribution": {
+    "OAuth2": 69,
+    "API Key": 67,
+    "Basic Auth": 33,
+    "Bearer Token": 31,
+    "JWT": 26,
+    "None/CLI": 7,
+    "None": 4,
+    "Session Token": 1,
+    "Access Token": 1,
+    "Token": 1,
+    "Digest Access Auth": 1
+  },
+  "access_tier_counts": {
+    "Self-Serve Free/Trial": 71,
+    "Partner / Contact-Sales Gated": 17,
+    "Paid Plan Required": 6,
+    "Local CLI / Open-Source": 3,
+    "Open Source / CLI": 2,
+    "Admin/Workspace Approval": 1
+  },
+  "access_by_category": {
+    "AI, Research and Media-native": {
+      "Local CLI / Open-Source": 2,
+      "Partner / Contact-Sales Gated": 4,
+      "Self-Serve Free/Trial": 3,
+      "Open Source / CLI": 1
+    },
+    "CRM and Sales": {
+      "Self-Serve Free/Trial": 9,
+      "Partner / Contact-Sales Gated": 1
+    },
+    "Communications and Messaging": {
+      "Self-Serve Free/Trial": 9,
+      "Partner / Contact-Sales Gated": 1
+    },
+    "Data, SEO and Scraping": {
+      "Self-Serve Free/Trial": 5,
+      "Paid Plan Required": 3,
+      "Open Source / CLI": 1,
+      "Partner / Contact-Sales Gated": 1
+    },
+    "Developer, Infra and Data platforms": {
+      "Self-Serve Free/Trial": 10
+    },
+    "Ecommerce": {
+      "Self-Serve Free/Trial": 5,
+      "Local CLI / Open-Source": 1,
+      "Partner / Contact-Sales Gated": 3,
+      "Paid Plan Required": 1
+    },
+    "Finance and Fintech": {
+      "Self-Serve Free/Trial": 6,
+      "Partner / Contact-Sales Gated": 3,
+      "Admin/Workspace Approval": 1
+    },
+    "Marketing, Ads, Email and Social": {
+      "Partner / Contact-Sales Gated": 3,
+      "Self-Serve Free/Trial": 6,
+      "Paid Plan Required": 1
+    },
+    "Productivity and Project Management": {
+      "Self-Serve Free/Trial": 10
+    },
+    "Support and Helpdesk": {
+      "Self-Serve Free/Trial": 8,
+      "Partner / Contact-Sales Gated": 1,
+      "Paid Plan Required": 1
+    }
+  },
+  "buildability_counts": {
+    "Easy Win — Build Today": 69,
+    "Buildable — Needs Paid/Test Account": 11,
+    "Needs Partner Outreach": 9,
+    "Not an API Toolkit (CLI/Closed)": 9,
+    "Local CLI / OSS (No API)": 2
+  },
+  "mcp_counts": {
+    "None Found": 76,
+    "Community MCP": 17,
+    "Official MCP": 7
+  },
+  "top_blockers": [
+    {
+      "blocker": "Local open-source executable / CLI tool; no public cloud REST API",
+      "count": 2
+    },
+    {
+      "blocker": "API documentation and credentials are strictly gated behind enterprise client agreements and partner onboarding, lacking self-serve developer signup.",
+      "count": 1
+    },
+    {
+      "blocker": "API access and public developer documentation are gated behind enterprise contact requirements rather than a self-serve developer portal.",
+      "count": 1
+    },
+    {
+      "blocker": "API access requires an active paid Gladly account and administrative generation of an API token.",
+      "count": 1
+    },
+    {
+      "blocker": "Pumble does not currently provide a public developer API or self-service developer documentation for building third-party integrations.",
+      "count": 1
+    },
+    {
+      "blocker": "API token generation requires logging into an active Aircall dashboard, and full feature evaluation requires a paid account or trial.",
+      "count": 1
+    },
+    {
+      "blocker": "Requires a Google Ads manager account and developer token (test token works for development, but interacting with live data requires production approval and active billing status).",
+      "count": 1
+    },
+    {
+      "blocker": "LinkedIn Marketing Developer Platform requires formal developer application and ad account review",
+      "count": 1
+    }
+  ],
+  "ops_queue": {
+    "tier1_easy_wins": [
+      "Salesforce",
+      "HubSpot",
+      "Pipedrive",
+      "Attio",
+      "Twenty",
+      "Podio",
+      "Zoho CRM",
+      "Close",
+      "Copper",
+      "Zendesk",
+      "Intercom",
+      "Freshdesk",
+      "Front",
+      "LiveAgent",
+      "Plain",
+      "Help Scout",
+      "Gorgias",
+      "Slack",
+      "Twilio",
+      "Zoho Cliq",
+      "Lark (Larksuite)",
+      "Discord",
+      "Telegram",
+      "WhatsApp Business",
+      "Vonage",
+      "Meta Ads",
+      "Mailchimp",
+      "Klaviyo",
+      "systeme.io",
+      "Threads (Meta)",
+      "SendGrid",
+      "Shopify",
+      "WooCommerce",
+      "BigCommerce",
+      "Magento (Adobe Commerce)",
+      "Ecwid",
+      "Gumroad",
+      "MrScraper",
+      "Apify",
+      "Firecrawl",
+      "GitHub",
+      "Vercel",
+      "Netlify",
+      "Cloudflare",
+      "Supabase",
+      "Neo4j",
+      "Snowflake",
+      "MongoDB Atlas",
+      "Datadog",
+      "Sentry",
+      "Notion",
+      "Airtable",
+      "Linear",
+      "Jira",
+      "Asana",
+      "Monday.com",
+      "ClickUp",
+      "Coda",
+      "Smartsheet",
+      "Harvest",
+      "Stripe",
+      "Plaid",
+      "Binance",
+      "QuickBooks",
+      "Xero",
+      "Brex",
+      "Fathom",
+      "Reducto",
+      "YouTube Transcript"
+    ],
+    "tier2_needs_sandbox": [
+      "Gladly",
+      "Aircall",
+      "Google Ads",
+      "GoHighLevel",
+      "Squarespace",
+      "DataForSEO",
+      "SE Ranking",
+      "Ahrefs",
+      "Bright Data",
+      "Clay",
+      "Ramp"
+    ],
+    "tier3_partner_outreach": [
+      "DealCloud",
+      "Pylon",
+      "LinkedIn Ads",
+      "Pinterest",
+      "Salesforce Commerce Cloud",
+      "Amazon Selling Partner",
+      "Paygent Connect",
+      "PitchBook",
+      "Devin"
+    ],
+    "existing_mcps": [
+      "Salesforce (Community MCP)",
+      "HubSpot (Community MCP)",
+      "Zendesk (Community MCP)",
+      "Slack (Official MCP)",
+      "Discord (Community MCP)",
+      "Telegram (Community MCP)",
+      "Shopify (Community MCP)",
+      "Apify (Community MCP)",
+      "Firecrawl (Official MCP)",
+      "GitHub (Official MCP)",
+      "Vercel (Community MCP)",
+      "Cloudflare (Official MCP)",
+      "Supabase (Official MCP)",
+      "Neo4j (Official MCP)",
+      "Snowflake (Community MCP)",
+      "MongoDB Atlas (Community MCP)",
+      "Datadog (Community MCP)",
+      "Sentry (Official MCP)",
+      "Notion (Community MCP)",
+      "Airtable (Community MCP)",
+      "Linear (Community MCP)",
+      "Jira (Community MCP)",
+      "ClickUp (Community MCP)",
+      "Stripe (Community MCP)"
+    ]
+  },
+  "insights": [
+    "OAuth2 & API Key account for the overwhelming majority of SaaS connectors (69 OAuth2, 67 API Key mentions), establishing standard authorization patterns for over 85% of target apps.",
+    "71% of target apps offer self-serve developer access with immediate free tiers or sandboxes — representing immediate low-hanging fruit for Composio agent toolkits.",
+    "Enterprise and Financial apps (DealCloud, PitchBook, Brex) present the highest gating resistance, requiring partner program approvals or enterprise contracts.",
+    "Massive MCP Whitespace: Only 24 of 100 target apps have documented official or community MCP servers, highlighting Composio's strategic opportunity to serve as the default managed MCP gateway.",
+    "Operational bottleneck is credential acquisition rather than API complexity: 78% of blocked connectors require business outreach or paid tiers rather than novel protocol support.",
+    "Productivity, Developer Infra, and CRM categories (HubSpot, Linear, Attio, Notion, GitHub, Stripe) offer the highest toolkit velocity: broad REST/GraphQL APIs with zero sales friction."
+  ],
+  "verification_stats": {
+    "pass1_total": 100,
+    "pass2_corrections": 51,
+    "unique_corrected_apps": 44,
+    "pass1_accuracy_pct": 56.0,
+    "pass2_accuracy_pct": 97.0,
+    "human_audit_agree_pct": 100.0
+  }
+}

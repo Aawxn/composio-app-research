@@ -1,0 +1,22 @@
+# Composio App Research — 100 Apps Integration Intelligence
+> Machine-readable summary for AI agents and automated reasoning tools.
+
+## Dataset Overview
+- Total apps analyzed: 100
+- Self-Serve Rate: 71
+- Dominant Auth: OAuth2 (69 apps), API Key (67 apps)
+- Verified Accuracy: 97.0%
+
+## Actionable Product Ops Queues
+### Tier 1: Easy Wins (Build Today)
+Salesforce, HubSpot, Pipedrive, Attio, Twenty, Podio, Zoho CRM, Close, Copper, Zendesk, Intercom, Freshdesk, Front, LiveAgent, Plain, Help Scout, Gorgias, Slack, Twilio, Zoho Cliq, Lark (Larksuite), Discord, Telegram, WhatsApp Business, Vonage, Meta Ads, Mailchimp, Klaviyo, systeme.io, Threads (Meta), SendGrid, Shopify, WooCommerce, BigCommerce, Magento (Adobe Commerce), Ecwid, Gumroad, MrScraper, Apify, Firecrawl, GitHub, Vercel, Netlify, Cloudflare, Supabase, Neo4j, Snowflake, MongoDB Atlas, Datadog, Sentry, Notion, Airtable, Linear, Jira, Asana, Monday.com, ClickUp, Coda, Smartsheet, Harvest, Stripe, Plaid, Binance, QuickBooks, Xero, Brex, Fathom, Reducto, YouTube Transcript
+
+### Tier 2: Needs Paid / Test Account
+Gladly, Aircall, Google Ads, GoHighLevel, Squarespace, DataForSEO, SE Ranking, Ahrefs, Bright Data, Clay, Ramp
+
+### Tier 3: Partner Outreach Required
+DealCloud, Pylon, LinkedIn Ads, Pinterest, Salesforce Commerce Cloud, Amazon Selling Partner, Paygent Connect, PitchBook, Devin
+
+## Schema & Data
+- Full dataset available at: data.json (same directory)
+- Each record includes: id, app_name, category, auth_methods, access_tier, api_surface, mcp_status, buildability_verdict, main_blocker, evidence_url.
