@@ -617,6 +617,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       cursor: pointer;
     }
     .filter-select:focus { outline: none; border-color: var(--border-focus); }
+    .filter-actions {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
     .action-btn {
       background: var(--surface);
       border: 1px solid var(--border-strong);
@@ -963,15 +969,17 @@ Composio Product Operations Team</div>
         <option value="Not an API Toolkit (CLI/Closed)">Not API / Closed</option>
       </select>
 
-      <button id="downloadCsvBtn" class="action-btn">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Export CSV
-      </button>
+      <div class="filter-actions">
+        <button id="downloadCsvBtn" class="action-btn">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
 
-      <button id="downloadJsonBtn" class="action-btn">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Export JSON
-      </button>
+        <button id="downloadJsonBtn" class="action-btn">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export JSON
+        </button>
+      </div>
     </div>
 
     <!-- Matrix table container with persistent sticky header -->
@@ -1068,7 +1076,7 @@ Composio Product Operations Team</div>
       labels: authKeys,
       datasets: [{
         data: authVals,
-        backgroundColor: '#38bdf8',
+        backgroundColor: '#ff5c35',
         borderRadius: 4
       }]
     },
