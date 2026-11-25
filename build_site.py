@@ -1321,6 +1321,9 @@ def build_site():
     with open(SITE_DIR / "index_professional.html", "w", encoding="utf-8") as f:
         f.write(html_output)
 
+    with open(BASE_DIR / "index.html", "w", encoding="utf-8") as f:
+        f.write(html_output)
+
     data_json_path = SITE_DIR / "data.json"
     with open(data_json_path, "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2, ensure_ascii=False)
