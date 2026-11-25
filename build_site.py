@@ -693,7 +693,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       </div>
       <div class="meta-row">
         <span class="meta-label">Verification Mode</span>
-        <span class="meta-value">HTTP + Subpath Parsing</span>
+        <span class="meta-value">Live Doc Parsing &amp; Subpath Probing</span>
       </div>
       <div class="meta-row">
         <span class="meta-label">Audit Sample</span>
@@ -861,13 +861,13 @@ Composio Product Operations Team</div>
     </div>
 
     <div class="case-callout">
-      <div class="case-title">The DealCloud Case Study: Ground-Truth Auth Detection</div>
+      <div class="case-title">Case Study: Ground-Truth Auth Detection via Live Documentation Probing (DealCloud #10)</div>
       <div class="case-body">
-        In Pass 1, raw search grounding incorrectly classified <strong>DealCloud (#10)</strong> as relying on standard <code>API Key</code>.
-        Direct inspection of live documentation (<code>api.docs.dealcloud.com/docs/token</code>) revealed that DealCloud implements an <strong>OAuth2 Client Credentials flow</strong> generating 15-minute Bearer tokens for subsequent API requests.
+        In Pass 1, initial LLM search grounding incorrectly classified <strong>DealCloud (#10)</strong> as relying on standard <code>API Key</code> authentication.
+        Direct inspection of live developer documentation (<code>api.docs.dealcloud.com/docs/token</code>) revealed that DealCloud actually enforces an <strong>OAuth2 Client Credentials flow</strong> generating short-lived 15-minute Bearer tokens for subsequent API requests.
         <br><br>
-        To eliminate this vulnerability across all 100 apps, we implemented <strong>Method 1+3 Live Page Parsing</strong>: fetching live HTML bodies and probing <code>/docs/token</code> and <code>/authentication</code> subpaths.
-        This automated verification loop lifted pipeline accuracy from <strong>56.0% (Pass 1 raw)</strong> to <strong>97.0% (Pass 2 verified)</strong> with 51 logged corrections.
+        To prevent silent runtime credential failures across all 100 connectors, our Pass 2 verification engine performs <strong>Direct Documentation Verification</strong>: fetching live HTML bodies via async HTTP and actively probing canonical authentication subpaths (such as <code>/docs/token</code>, <code>/docs/apikeys</code>, and <code>/authentication</code>).
+        This deterministic verification loop caught and corrected 51 discrepancy records, lifting pipeline accuracy from <strong>56.0% (Pass 1 raw)</strong> to <strong>97.0% (Pass 2 verified)</strong> before human audit.
       </div>
     </div>
 

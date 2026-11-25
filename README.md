@@ -176,7 +176,7 @@ composio-app-research/
 - Takes the 100 app names from `apps_100.json`
 - For each app, calls Gemini 3.5 Flash Lite with Google Search grounding
 - Asks: "What auth does this app use? Is it self-serve? What's the API surface? Is there an MCP server?"
-- Also fetches the actual docs page via `httpx` and scans the HTML for auth keywords (Method 1+3)
+- Also performs direct documentation verification via `httpx`, scanning live HTML bodies and canonical auth subpaths for ground-truth keywords
 - Saves to `pass1_raw.json` with JSONL checkpointing (can resume if interrupted)
 
 **Pass 2 — The Automated Verifier (`verifier.py`):**
