@@ -1327,6 +1327,8 @@ def build_site():
     data_json_path = SITE_DIR / "data.json"
     with open(data_json_path, "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2, ensure_ascii=False)
+    with open(BASE_DIR / "data.json", "w", encoding="utf-8") as f:
+        json.dump(records, f, indent=2, ensure_ascii=False)
 
     llms_path = SITE_DIR / "llms.txt"
     llms_summary = (
@@ -1350,6 +1352,8 @@ def build_site():
         f"- Each record includes: id, app_name, category, auth_methods, access_tier, api_surface, mcp_status, buildability_verdict, main_blocker, evidence_url.\\n"
     )
     with open(llms_path, "w", encoding="utf-8") as f:
+        f.write(llms_summary)
+    with open(BASE_DIR / "llms.txt", "w", encoding="utf-8") as f:
         f.write(llms_summary)
 
     console.print(f"[bold green]Site build complete![/bold green] Generated files in {SITE_DIR}:")
