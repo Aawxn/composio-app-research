@@ -1,9 +1,9 @@
 """Generates single self-contained executive-grade site/index.html, site/data.json, and site/llms.txt.
-Implements the design-taste-frontend standard:
-- Anti-Emoji policy: Zero emojis; replaced with clean inline SVG primitives.
-- High-Agency Typography: Geist Sans & Geist Mono (Banning generic Inter).
-- Calibrated Materiality: Zinc-950 (#090d14), singular Composio vermilion accent (#ff5c35), no purple/neon AI slop.
-- Cockpit Data Density: 1px logic dividers, border-t/divide-y, monospace numbers and technical IDs.
+Combines high-agency engineering polish with rich, readable visual color-coding:
+- ZERO EMOJIS: Clean inline SVG vector primitives (Phosphor / Radix style).
+- HIGH-CONTRAST TYPOGRAPHY: Crisp readable labels, white metrics, no washed-out muddy grays.
+- VIBRANT OPERATIONAL COLOR-CODING: Color-coded KPI cards, multi-hue charts, distinct auth tag badges (OAuth2 blue, API Key purple, Basic amber, Bearer green), and clear buildability status pills.
+- COMPOSIO BRANDING: Calibrated dark slate canvas (#0a0f1d), Composio vermilion accent (#ff5c35), elevated cards with subtle hierarchy.
 """
 
 import json
@@ -31,68 +31,75 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <title>Composio Product Operations &bull; 100-App Integration Intelligence</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
-      --bg: #090d14;
-      --bg-subtle: #0d121d;
-      --surface: #111726;
-      --surface-elevated: #161e31;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-strong: rgba(255, 255, 255, 0.16);
+      --bg: #090e17;
+      --surface: #0f172a;
+      --surface-card: #141e33;
+      --surface-elevated: #1a2744;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(255, 255, 255, 0.18);
       --border-focus: #ff5c35;
-      
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-tertiary: #64748b;
-      --text-disabled: #475569;
-      
-      --accent: #ff5c35;
-      --accent-muted: rgba(255, 92, 53, 0.12);
-      --accent-border: rgba(255, 92, 53, 0.28);
-      
-      --green: #10b981;
-      --green-muted: rgba(16, 185, 129, 0.12);
-      --green-border: rgba(16, 185, 129, 0.28);
-      
-      --amber: #f59e0b;
-      --amber-muted: rgba(245, 158, 11, 0.12);
-      --amber-border: rgba(245, 158, 11, 0.28);
-      
-      --red: #ef4444;
-      --red-muted: rgba(239, 68, 68, 0.12);
-      --red-border: rgba(239, 68, 68, 0.28);
-      
-      --blue: #38bdf8;
-      --blue-muted: rgba(56, 189, 248, 0.12);
-      
-      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono: 'Geist Mono', monospace;
+
+      /* High-contrast readable typography */
+      --text-white: #ffffff;
+      --text-main: #f1f5f9;
+      --text-muted: #cbd5e1;
+      --text-dim: #94a3b8;
+      --text-dark: #64748b;
+
+      /* Strategic Color Palette */
+      --accent: #ff5c35;       /* Composio Vermilion */
+      --accent-muted: rgba(255, 92, 53, 0.16);
+      --accent-border: rgba(255, 92, 53, 0.4);
+
+      --blue: #38bdf8;         /* OAuth2 / API Protocols */
+      --blue-muted: rgba(56, 189, 248, 0.16);
+      --blue-border: rgba(56, 189, 248, 0.35);
+
+      --green: #10b981;        /* Easy Wins / Accuracy / Self-Serve */
+      --green-muted: rgba(16, 185, 129, 0.16);
+      --green-border: rgba(16, 185, 129, 0.4);
+
+      --amber: #f59e0b;        /* Paid Tiers / Sandboxes */
+      --amber-muted: rgba(245, 158, 11, 0.16);
+      --amber-border: rgba(245, 158, 11, 0.4);
+
+      --purple: #a855f7;       /* MCP Whitespace / Developer Infra */
+      --purple-muted: rgba(168, 85, 247, 0.16);
+      --purple-border: rgba(168, 85, 247, 0.4);
+
+      --red: #ef4444;          /* Gated / Blocked / Closed */
+      --red-muted: rgba(239, 68, 68, 0.16);
+      --red-border: rgba(239, 68, 68, 0.4);
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
       background-color: var(--bg);
-      color: var(--text-primary);
+      color: var(--text-main);
       font-family: var(--font-sans);
-      line-height: 1.5;
+      line-height: 1.55;
       font-size: 13.5px;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    a { color: var(--text-primary); text-decoration: none; }
-    a:hover { color: var(--accent); }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 40px 28px 80px;
+      padding: 36px 28px 80px;
     }
 
-    /* Top Navigation / Status Header */
+    /* Top Bar */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -100,122 +107,162 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 32px;
-      font-size: 12px;
+      font-size: 12.5px;
     }
     .brand-mark {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
+      gap: 12px;
+      font-weight: 700;
       letter-spacing: -0.01em;
-      color: var(--text-primary);
+      color: var(--text-white);
     }
     .brand-badge {
       font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-size: 11px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: var(--accent);
       background: var(--accent-muted);
       border: 1px solid var(--accent-border);
-      padding: 2px 7px;
+      padding: 3px 8px;
       border-radius: 4px;
     }
     .system-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       font-family: var(--font-mono);
+      font-size: 12px;
     }
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background-color: var(--green);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
     }
 
-    /* Asymmetric Hero Header (Anti-Center Bias) */
+    /* Asymmetric Hero Header */
     .hero-section {
       display: grid;
       grid-template-columns: 1.6fr 1fr;
-      gap: 40px;
+      gap: 36px;
       align-items: start;
-      margin-bottom: 44px;
+      margin-bottom: 40px;
     }
     @media (max-width: 900px) {
       .hero-section { grid-template-columns: 1fr; }
     }
     .hero-title {
-      font-size: 34px;
-      font-weight: 600;
+      font-size: 33px;
+      font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.18;
-      color: #fff;
+      line-height: 1.2;
+      color: var(--text-white);
       margin-bottom: 14px;
     }
     .hero-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
+      font-size: 14.5px;
+      color: var(--text-muted);
       line-height: 1.65;
-      max-width: 68ch;
+      max-width: 66ch;
     }
     .hero-meta-panel {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      font-size: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 20px 24px;
+      font-size: 12.5px;
     }
     .meta-row {
       display: flex;
       justify-content: space-between;
-      padding: 7px 0;
+      padding: 8px 0;
       border-bottom: 1px solid var(--border);
     }
     .meta-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .meta-label { color: var(--text-tertiary); font-family: var(--font-mono); }
-    .meta-value { color: var(--text-primary); font-weight: 500; font-family: var(--font-mono); }
+    .meta-label { color: var(--text-dim); font-family: var(--font-mono); font-size: 11.5px; }
+    .meta-value { color: var(--text-white); font-weight: 600; font-family: var(--font-mono); }
 
-    /* High-Density Metric Strip (Cockpit Mode) */
-    .metric-strip {
+    /* Color-Coded KPI Cards */
+    .kpi-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
+      gap: 16px;
+      margin-bottom: 44px;
     }
-    @media (max-width: 980px) {
-      .metric-strip { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 1000px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
-      .metric-strip { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
     }
-    .metric-cell {
-      padding: 20px 24px;
-      border-right: 1px solid var(--border);
+    .kpi-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, border-color 0.15s ease;
     }
-    .metric-cell:last-child { border-right: none; }
-    .metric-header {
+    .kpi-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+    }
+    .kpi-card-total::before { background: #94a3b8; }
+    .kpi-card-selfserve::before { background: var(--green); }
+    .kpi-card-oauth::before { background: var(--blue); }
+    .kpi-card-mcp::before { background: var(--purple); }
+    .kpi-card-accuracy::before { background: linear-gradient(90deg, var(--green), var(--accent)); }
+
+    .kpi-label {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 11.5px;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--text-tertiary);
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
       margin-bottom: 8px;
     }
-    .metric-number {
-      font-family: var(--font-mono);
-      font-size: 32px;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      color: #fff;
-      line-height: 1;
-      margin-bottom: 6px;
+    .val-total { color: var(--text-white); }
+    .val-selfserve { color: var(--green); }
+    .val-oauth { color: var(--blue); }
+    .val-mcp { color: #c084fc; }
+    .val-accuracy { color: var(--green); }
+
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .metric-subtext {
-      font-size: 11.5px;
-      color: var(--text-secondary);
+    .kpi-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 600;
     }
 
     /* Section Headings */
@@ -228,71 +275,74 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       padding-bottom: 12px;
     }
     .section-title {
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 700;
       letter-spacing: -0.015em;
-      color: #fff;
+      color: var(--text-white);
     }
     .section-tag {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--text-tertiary);
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
     }
 
-    /* Cockpit Charts Layout */
+    /* Charts Grid */
     .charts-grid {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
-      gap: 24px;
-      margin-bottom: 48px;
+      gap: 20px;
+      margin-bottom: 44px;
     }
     @media (max-width: 900px) {
       .charts-grid { grid-template-columns: 1fr; }
     }
     .chart-panel {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 22px 24px;
     }
     .chart-panel-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-white);
       margin-bottom: 4px;
     }
     .chart-panel-desc {
-      font-size: 11.5px;
-      color: var(--text-tertiary);
-      margin-bottom: 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
     }
     .chart-wrapper {
       position: relative;
-      height: 260px;
+      height: 270px;
       width: 100%;
     }
 
-    /* Insights Box (Anti-Generic Architecture) */
+    /* Insights Box */
     .insights-panel {
-      border: 1px solid var(--border);
-      background: var(--bg-subtle);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 44px;
     }
     .insights-title {
-      font-size: 13px;
-      font-weight: 600;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--text-tertiary);
+      color: var(--text-dim);
       margin-bottom: 16px;
-      font-family: var(--font-mono);
     }
     .insights-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px 28px;
+      gap: 16px 32px;
     }
     @media (max-width: 800px) {
       .insights-grid { grid-template-columns: 1fr; }
@@ -300,23 +350,25 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .insight-item {
       display: flex;
       gap: 12px;
-      font-size: 13px;
-      color: var(--text-secondary);
+      font-size: 13.5px;
+      color: var(--text-muted);
       line-height: 1.6;
     }
     .insight-bullet {
       color: var(--accent);
       font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.6;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
     }
+    .insight-item strong { color: var(--text-white); font-weight: 600; }
 
-    /* Product Ops Queue Columns */
+    /* Actionable Ops Queues */
     .queue-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-bottom: 48px;
+      margin-bottom: 44px;
     }
     @media (max-width: 1100px) {
       .queue-grid { grid-template-columns: repeat(2, 1fr); }
@@ -325,10 +377,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       .queue-grid { grid-template-columns: 1fr; }
     }
     .queue-column {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
     }
     .queue-header {
       display: flex;
@@ -337,42 +391,43 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       margin-bottom: 8px;
     }
     .queue-name {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-white);
     }
     .queue-count {
       font-family: var(--font-mono);
       font-size: 11px;
-      padding: 1px 6px;
+      padding: 2px 7px;
       border-radius: 4px;
-      font-weight: 500;
+      font-weight: 600;
     }
     .count-green { background: var(--green-muted); color: var(--green); border: 1px solid var(--green-border); }
     .count-amber { background: var(--amber-muted); color: var(--amber); border: 1px solid var(--amber-border); }
     .count-orange { background: var(--accent-muted); color: var(--accent); border: 1px solid var(--accent-border); }
-    .count-blue { background: var(--blue-muted); color: var(--blue); border: 1px solid rgba(56, 189, 248, 0.28); }
+    .count-blue { background: var(--blue-muted); color: var(--blue); border: 1px solid var(--blue-border); }
+
     .queue-desc {
-      font-size: 11.5px;
-      color: var(--text-tertiary);
+      font-size: 12px;
+      color: var(--text-muted);
       margin-bottom: 14px;
       line-height: 1.45;
     }
     .queue-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 6px;
       max-height: 220px;
       overflow-y: auto;
     }
     .queue-tag {
       font-family: var(--font-mono);
       font-size: 11px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2px 7px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-strong);
+      padding: 3px 8px;
       border-radius: 4px;
-      color: var(--text-secondary);
+      color: var(--text-main);
     }
 
     /* Composio Catalog Gap Analysis */
@@ -380,78 +435,81 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin-bottom: 48px;
+      margin-bottom: 44px;
     }
     @media (max-width: 800px) {
       .gap-grid { grid-template-columns: 1fr; }
     }
     .gap-card {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 22px;
     }
 
     /* Verification Deep Dive Panel */
     .verification-card {
-      border: 1px solid var(--border);
-      background: var(--bg-subtle);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 48px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 26px;
+      margin-bottom: 44px;
     }
     .case-callout {
-      border-left: 2px solid var(--accent);
-      padding-left: 16px;
-      margin-bottom: 24px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--green);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 26px;
     }
     .case-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 6px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 8px;
     }
     .case-body {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
     }
 
-    /* Outreach Email Disclosure */
+    /* Pre-Drafted Email Disclosure */
     details {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 12px 16px;
-      margin-bottom: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 44px;
     }
     details summary {
       cursor: pointer;
       font-family: var(--font-mono);
       font-size: 12px;
-      font-weight: 500;
-      color: var(--text-primary);
+      font-weight: 600;
+      color: var(--text-white);
       outline: none;
     }
     .email-pre {
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 14px;
+      border-radius: 6px;
+      padding: 16px;
       font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-top: 14px;
       white-space: pre-wrap;
     }
 
-    /* Tables (Engineering Grade) */
+    /* Data Tables */
     .data-table-wrapper {
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       border-radius: 8px;
       overflow-x: auto;
-      background: var(--bg);
+      background: var(--surface);
       margin-bottom: 24px;
     }
     table {
@@ -463,57 +521,63 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     th {
       font-family: var(--font-mono);
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--text-tertiary);
-      background: var(--bg-subtle);
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+      background: var(--surface-elevated);
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border-strong);
       white-space: nowrap;
     }
     td {
-      padding: 10px 14px;
+      padding: 11px 14px;
       border-bottom: 1px solid var(--border);
-      color: var(--text-secondary);
+      color: var(--text-muted);
       vertical-align: middle;
     }
     tr:last-child td { border-bottom: none; }
     tr:hover td {
-      background-color: rgba(255, 255, 255, 0.015);
-      color: var(--text-primary);
+      background-color: rgba(255, 255, 255, 0.025);
+      color: var(--text-white);
     }
-    
-    /* Micro Badges & Tags */
+
+    /* Purposeful Micro Pills & Badges */
     .pill {
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-weight: 500;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
       display: inline-block;
       white-space: nowrap;
     }
-    .pill-green { background: var(--green-muted); color: var(--green); border: 1px solid var(--green-border); }
-    .pill-amber { background: var(--amber-muted); color: var(--amber); border: 1px solid var(--amber-border); }
-    .pill-orange { background: var(--accent-muted); color: var(--accent); border: 1px solid var(--accent-border); }
-    .pill-red { background: var(--red-muted); color: var(--red); border: 1px solid var(--red-border); }
-    .pill-neutral { background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); border: 1px solid var(--border); }
-    
+    .pill-green { background: var(--green-muted); color: #34d399; border: 1px solid var(--green-border); }
+    .pill-amber { background: var(--amber-muted); color: #fbbf24; border: 1px solid var(--amber-border); }
+    .pill-orange { background: var(--accent-muted); color: #ff7a59; border: 1px solid var(--accent-border); }
+    .pill-red { background: var(--red-muted); color: #f87171; border: 1px solid var(--red-border); }
+    .pill-slate { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+    /* Color-Coded Auth Tags (Vibrant & Distinct) */
     .auth-tag {
       font-family: var(--font-mono);
       font-size: 10.5px;
-      padding: 1px 5px;
-      border-radius: 3px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
       margin-right: 4px;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       display: inline-block;
+      white-space: nowrap;
     }
+    .auth-oauth { background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); }
+    .auth-key { background: rgba(192, 132, 252, 0.18); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.35); }
+    .auth-basic { background: rgba(251, 191, 36, 0.18); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.35); }
+    .auth-bearer { background: rgba(52, 211, 153, 0.18); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.35); }
+    .auth-jwt { background: rgba(244, 114, 182, 0.18); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.35); }
+    .auth-cli { background: rgba(148, 163, 184, 0.18); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.35); }
 
-    /* Matrix Controls */
+    /* Filter Controls */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -524,52 +588,56 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .search-input {
       flex: 1;
       min-width: 260px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
       border-radius: 6px;
-      padding: 8px 12px;
+      padding: 9px 14px;
       font-family: var(--font-sans);
-      font-size: 12.5px;
-      color: #fff;
+      font-size: 13px;
+      color: var(--text-white);
     }
     .search-input:focus {
       outline: none;
       border-color: var(--border-focus);
     }
     .filter-select {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
       border-radius: 6px;
-      padding: 8px 10px;
+      padding: 9px 12px;
       font-family: var(--font-sans);
-      font-size: 12px;
-      color: var(--text-secondary);
+      font-size: 12.5px;
+      color: var(--text-main);
       cursor: pointer;
     }
     .filter-select:focus { outline: none; border-color: var(--border-focus); }
     .action-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--surface-card);
+      border: 1px solid var(--border-strong);
       border-radius: 6px;
-      padding: 8px 14px;
+      padding: 9px 14px;
       font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 500;
-      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: border-color 0.15s ease;
+      gap: 7px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
     }
-    .action-btn:hover { border-color: var(--border-strong); }
+    .action-btn:hover {
+      background: var(--surface-elevated);
+      border-color: #ffffff;
+      color: #ffffff;
+    }
     .action-btn:active { transform: translateY(1px); }
 
-    /* SVG Icon Helpers */
+    /* Vector SVG Icons */
     .icon {
       width: 14px;
       height: 14px;
-      stroke-width: 2;
+      stroke-width: 2.2;
       stroke: currentColor;
       fill: none;
       display: inline-block;
@@ -581,8 +649,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       padding-top: 24px;
       display: flex;
       justify-content: space-between;
-      font-size: 11.5px;
-      color: var(--text-tertiary);
+      font-size: 12px;
+      color: var(--text-dim);
       font-family: var(--font-mono);
     }
   </style>
@@ -632,36 +700,36 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </header>
 
-  <!-- HIGH-DENSITY METRIC COCKPIT -->
-  <section class="metric-strip">
-    <div class="metric-cell">
-      <div class="metric-header">Dataset Analyzed</div>
-      <div class="metric-number">100</div>
-      <div class="metric-subtext">Across 10 standard SaaS sectors</div>
+  <!-- COLOR-CODED KPI CARDS -->
+  <section class="kpi-grid">
+    <div class="kpi-card kpi-card-total">
+      <div class="kpi-label">Dataset Analyzed</div>
+      <div class="kpi-value val-total">100</div>
+      <div class="kpi-sub">Across 10 core SaaS categories</div>
     </div>
-    <div class="metric-cell">
-      <div class="metric-header">Self-Serve Rate</div>
-      <div class="metric-number" id="kpi-selfserve">71%</div>
-      <div class="metric-subtext">Immediate free/trial credential access</div>
+    <div class="kpi-card kpi-card-selfserve">
+      <div class="kpi-label">Self-Serve Rate</div>
+      <div class="kpi-value val-selfserve" id="kpi-selfserve">71%</div>
+      <div class="kpi-sub">Instant sandbox or trial access</div>
     </div>
-    <div class="metric-cell">
-      <div class="metric-header">OAuth2 Dominance</div>
-      <div class="metric-number" id="kpi-oauth">69%</div>
-      <div class="metric-subtext">Dominant protocol for multi-tenant auth</div>
+    <div class="kpi-card kpi-card-oauth">
+      <div class="kpi-label">OAuth2 Dominance</div>
+      <div class="kpi-value val-oauth" id="kpi-oauth">69%</div>
+      <div class="kpi-sub">Standard authorization protocol</div>
     </div>
-    <div class="metric-cell">
-      <div class="metric-header">MCP Whitespace</div>
-      <div class="metric-number" id="kpi-mcp">85%</div>
-      <div class="metric-subtext">Unbuilt public MCP servers on GitHub</div>
+    <div class="kpi-card kpi-card-mcp">
+      <div class="kpi-label">MCP Whitespace</div>
+      <div class="kpi-value val-mcp" id="kpi-mcp">85%</div>
+      <div class="kpi-sub">Lack public MCP servers on GitHub</div>
     </div>
-    <div class="metric-cell">
-      <div class="metric-header">Verified Accuracy</div>
-      <div class="metric-number" id="kpi-accuracy">97.0%</div>
-      <div class="metric-subtext">Lifted from 56.0% raw pass via loops</div>
+    <div class="kpi-card kpi-card-accuracy">
+      <div class="kpi-label">Verified Accuracy</div>
+      <div class="kpi-value val-accuracy" id="kpi-accuracy">97.0%</div>
+      <div class="kpi-sub">Lifted from 56.0% raw pass via loops</div>
     </div>
   </section>
 
-  <!-- COCKPIT VISUALIZATIONS -->
+  <!-- VISUALIZATIONS -->
   <section class="charts-grid">
     <div class="chart-panel">
       <div class="chart-panel-title">Authentication Protocol Distribution</div>
@@ -688,13 +756,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   </section>
 
   <!-- ACTIONABLE PRODUCT OPS SPRINT QUEUE -->
-  <section style="margin-bottom: 48px;">
+  <section style="margin-bottom: 44px;">
     <div class="section-header">
       <div class="section-title">Actionable Execution Queue</div>
       <div class="section-tag">SPRINT ALLOCATIONS</div>
     </div>
     <div class="queue-grid">
-      <div class="queue-column">
+      <div class="queue-column" style="border-top: 3px solid var(--green);">
         <div class="queue-header">
           <span class="queue-name">Tier 1: Immediate Easy Wins</span>
           <span class="queue-count count-green" id="tier1Count">0</span>
@@ -703,7 +771,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="queue-tags" id="tier1Tags"></div>
       </div>
 
-      <div class="queue-column">
+      <div class="queue-column" style="border-top: 3px solid var(--amber);">
         <div class="queue-header">
           <span class="queue-name">Tier 2: Needs Paid Account</span>
           <span class="queue-count count-amber" id="tier2Count">0</span>
@@ -712,7 +780,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="queue-tags" id="tier2Tags"></div>
       </div>
 
-      <div class="queue-column">
+      <div class="queue-column" style="border-top: 3px solid var(--accent);">
         <div class="queue-header">
           <span class="queue-name">Tier 3: Partner Outreach</span>
           <span class="queue-count count-orange" id="tier3Count">0</span>
@@ -721,7 +789,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="queue-tags" id="tier3Tags"></div>
       </div>
 
-      <div class="queue-column">
+      <div class="queue-column" style="border-top: 3px solid var(--blue);">
         <div class="queue-header">
           <span class="queue-name">Existing MCPs to Gateway</span>
           <span class="queue-count count-blue" id="mcpCount">0</span>
@@ -733,27 +801,27 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   </section>
 
   <!-- COMPOSIO CATALOG GAP ANALYSIS -->
-  <section style="margin-bottom: 48px;">
+  <section style="margin-bottom: 44px;">
     <div class="section-header">
       <div class="section-title">Composio Ecosystem Integration Gap Analysis</div>
       <div class="section-tag">CATALOG COVERAGE</div>
     </div>
     <div class="gap-grid">
-      <div class="gap-card">
+      <div class="gap-card" style="border-left: 3px solid var(--green);">
         <div class="queue-header">
-          <span class="queue-name">Already Supported in Composio</span>
+          <span class="queue-name" style="font-size: 13.5px; font-weight: 700; color:#fff;">Already Supported in Composio</span>
           <span class="queue-count count-green" id="composioSupportedCount">64 Apps</span>
         </div>
-        <div class="queue-desc">Connectors already live or maintained in Composio's SDK and MCP registry.</div>
+        <div class="queue-desc" style="margin-bottom: 14px;">Connectors already live or maintained in Composio's SDK and MCP registry.</div>
         <div class="queue-tags" id="composioExistingList"></div>
       </div>
 
-      <div class="gap-card">
+      <div class="gap-card" style="border-left: 3px solid var(--accent);">
         <div class="queue-header">
-          <span class="queue-name">Net-New Integration Roadmap</span>
+          <span class="queue-name" style="font-size: 13.5px; font-weight: 700; color:#fff;">Net-New Integration Roadmap</span>
           <span class="queue-count count-orange" id="composioNewCount">36 Apps</span>
         </div>
-        <div class="queue-desc">Customer-requested apps unbuilt in Composio — primary targets for Product Ops.</div>
+        <div class="queue-desc" style="margin-bottom: 14px;">Customer-requested apps unbuilt in Composio — primary targets for Product Ops.</div>
         <div class="queue-tags" id="composioNewList"></div>
       </div>
     </div>
@@ -798,17 +866,17 @@ Composio Product Operations Team</div>
     </div>
 
     <!-- 15-App Stratified Human Audit Table -->
-    <div style="margin-bottom: 14px; font-weight: 600; font-size: 13px; color: var(--text-primary);">
+    <div style="margin-bottom: 14px; font-weight: 700; font-size: 13.5px; color: var(--text-white);">
       Pass 3: Stratified 15-App Human Audit Sample
     </div>
-    <div class="data-table-wrapper" style="max-height: 380px;">
+    <div class="data-table-wrapper" style="max-height: 400px;">
       <table>
         <thead>
           <tr>
-            <th style="width: 40px;">#</th>
+            <th style="width: 45px;">#</th>
             <th style="width: 140px;">Application</th>
-            <th style="width: 160px;">Category</th>
-            <th style="width: 180px;">Agent Claimed Auth</th>
+            <th style="width: 150px;">Category</th>
+            <th style="width: 190px;">Agent Claimed Auth</th>
             <th style="width: 160px;">Access Tier</th>
             <th>Sampling Rationale</th>
             <th style="width: 110px;">Audit Verdict</th>
@@ -822,16 +890,16 @@ Composio Product Operations Team</div>
     </div>
 
     <!-- Sample Automated Diffs -->
-    <div style="margin-top: 24px; margin-bottom: 14px; font-weight: 600; font-size: 13px; color: var(--text-primary);">
+    <div style="margin-top: 26px; margin-bottom: 14px; font-weight: 700; font-size: 13.5px; color: var(--text-white);">
       Sample Automated Corrections Caught in Pass 2 (from 51 total logged diffs)
     </div>
     <div class="data-table-wrapper" style="max-height: 280px;">
       <table>
         <thead>
           <tr>
-            <th style="width: 40px;">ID</th>
+            <th style="width: 45px;">ID</th>
             <th style="width: 130px;">Application</th>
-            <th style="width: 130px;">Field Corrected</th>
+            <th style="width: 140px;">Field Corrected</th>
             <th>Pass 1 Raw Output</th>
             <th>Pass 2 Verified Output</th>
             <th>Automated Corroboration Rationale</th>
@@ -852,7 +920,7 @@ Composio Product Operations Team</div>
     </div>
 
     <div class="filter-bar">
-      <input type="text" id="searchInput" class="search-input" placeholder="Filter by name, category, or keyword...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search app name, category, or keyword...">
       
       <select id="categoryFilter" class="filter-select">
         <option value="">All Categories (10)</option>
@@ -899,16 +967,16 @@ Composio Product Operations Team</div>
       <table>
         <thead>
           <tr>
-            <th style="width: 40px;">#</th>
+            <th style="width: 45px;">#</th>
             <th style="width: 140px;">App Name</th>
             <th style="width: 150px;">Category</th>
-            <th style="width: 180px;">Auth Methods</th>
+            <th style="width: 200px;">Auth Methods</th>
             <th style="width: 160px;">Access Tier</th>
             <th style="width: 120px;">API Surface</th>
-            <th style="width: 110px;">MCP Status</th>
+            <th style="width: 120px;">MCP Status</th>
             <th style="width: 160px;">Buildability Verdict</th>
             <th>Primary Blocker</th>
-            <th style="width: 70px;">Evidence</th>
+            <th style="width: 75px;">Evidence</th>
           </tr>
         </thead>
         <tbody id="matrixTableBody">
@@ -917,9 +985,9 @@ Composio Product Operations Team</div>
       </table>
     </div>
 
-    <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-tertiary); font-family: var(--font-mono); margin-top: 10px;">
+    <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 10px;">
       <span id="matrixDisplayCount">Showing 100 of 100 applications</span>
-      <span>Artifacts: <a href="data.json" download style="color:var(--text-secondary);">data.json</a> &bull; <a href="llms.txt" target="_blank" style="color:var(--text-secondary);">llms.txt</a></span>
+      <span>Artifacts: <a href="data.json" download style="color:var(--blue);">data.json</a> &bull; <a href="llms.txt" target="_blank" style="color:var(--blue);">llms.txt</a></span>
     </div>
   </section>
 
@@ -952,7 +1020,7 @@ Composio Product Operations Team</div>
   if (PATTERNS.insights && PATTERNS.insights.length > 0) {
     insightsGrid.innerHTML = PATTERNS.insights.map(ins => `
       <div class="insight-item">
-        <span class="insight-bullet">/</span>
+        <span class="insight-bullet">&bull;</span>
         <div>${ins}</div>
       </div>
     `).join('');
@@ -988,8 +1056,8 @@ Composio Product Operations Team</div>
       labels: authKeys,
       datasets: [{
         data: authVals,
-        backgroundColor: '#ff5c35',
-        borderRadius: 3
+        backgroundColor: '#38bdf8',
+        borderRadius: 4
       }]
     },
     options: {
@@ -998,13 +1066,19 @@ Composio Product Operations Team</div>
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { family: 'Geist Mono', size: 10 } } },
-        y: { grid: { display: false }, ticks: { color: '#f8fafc', font: { family: 'Geist', size: 11 } } }
+        x: { 
+          grid: { color: 'rgba(255, 255, 255, 0.08)' }, 
+          ticks: { color: '#cbd5e1', font: { family: 'JetBrains Mono', size: 10.5, weight: '500' } } 
+        },
+        y: { 
+          grid: { display: false }, 
+          ticks: { color: '#ffffff', font: { family: 'Inter', size: 12, weight: '500' } } 
+        }
       }
     }
   });
 
-  // Chart.js - Buildability
+  // Chart.js - Buildability Doughnut
   const buildKeys = Object.keys(PATTERNS.buildability_counts || {});
   const buildVals = Object.values(PATTERNS.buildability_counts || {});
   new Chart(document.getElementById('buildabilityChart'), {
@@ -1013,8 +1087,8 @@ Composio Product Operations Team</div>
       labels: buildKeys.map(k => k.split('—')[0].trim()),
       datasets: [{
         data: buildVals,
-        backgroundColor: ['#10b981', '#f59e0b', '#ff5c35', '#ef4444', '#64748b'],
-        borderColor: '#090d14',
+        backgroundColor: ['#10b981', '#f59e0b', '#ff5c35', '#ef4444', '#94a3b8'],
+        borderColor: '#0f172a',
         borderWidth: 2
       }]
     },
@@ -1022,7 +1096,10 @@ Composio Product Operations Team</div>
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { family: 'Geist', size: 11 }, padding: 12 } }
+        legend: { 
+          position: 'bottom', 
+          labels: { color: '#cbd5e1', font: { family: 'Inter', size: 11.5, weight: '500' }, padding: 12 } 
+        }
       }
     }
   });
@@ -1032,14 +1109,14 @@ Composio Product Operations Team</div>
   if (AUDIT && AUDIT.length > 0) {
     auditBody.innerHTML = AUDIT.map(a => `
       <tr>
-        <td style="font-family:var(--font-mono); color:var(--text-tertiary);">${a.app_id}</td>
-        <td style="font-weight:600; color:#fff;">${a.app_name}</td>
+        <td style="font-family:var(--font-mono); color:var(--text-dim);">${a.app_id}</td>
+        <td style="font-weight:700; color:#fff;">${a.app_name}</td>
         <td>${a.category}</td>
-        <td>${(a.agent_auth || []).map(x => `<span class="auth-tag">${x}</span>`).join('')}</td>
-        <td><span class="pill pill-neutral">${a.agent_access_tier}</span></td>
-        <td style="font-size:11.5px; color:var(--text-tertiary);">${a.selection_reason}</td>
+        <td>${renderAuthTags(a.agent_auth || [])}</td>
+        <td><span class="pill pill-slate">${a.agent_access_tier}</span></td>
+        <td style="font-size:12px; color:var(--text-muted);">${a.selection_reason}</td>
         <td><span class="pill pill-green">CONFIRMED</span></td>
-        <td style="font-size:11.5px; line-height:1.45;">${a.human_notes || 'Verified against live developer documentation.'}</td>
+        <td style="font-size:12px; line-height:1.5; color:var(--text-main);">${a.human_notes || 'Verified against live developer documentation.'}</td>
       </tr>
     `).join('');
   }
@@ -1049,12 +1126,12 @@ Composio Product Operations Team</div>
   if (DIFFS && DIFFS.length > 0) {
     diffsBody.innerHTML = DIFFS.slice(0, 8).map(d => `
       <tr>
-        <td style="font-family:var(--font-mono); color:var(--text-tertiary);">${d.app_id}</td>
-        <td style="font-weight:600; color:#fff;">${d.app_name}</td>
-        <td><code>${d.field_changed}</code></td>
-        <td style="color:var(--red); font-family:var(--font-mono); font-size:11px;">${d.old_value}</td>
-        <td style="color:var(--green); font-family:var(--font-mono); font-size:11px;">${d.new_value}</td>
-        <td style="font-size:11.5px; line-height:1.45;">${d.reason}</td>
+        <td style="font-family:var(--font-mono); color:var(--text-dim);">${d.app_id}</td>
+        <td style="font-weight:700; color:#fff;">${d.app_name}</td>
+        <td><code style="color:#cbd5e1;">${d.field_changed}</code></td>
+        <td style="color:#f87171; font-family:var(--font-mono); font-size:11.5px;">${d.old_value}</td>
+        <td style="color:#34d399; font-family:var(--font-mono); font-size:11.5px;">${d.new_value}</td>
+        <td style="font-size:12px; line-height:1.5;">${d.reason}</td>
       </tr>
     `).join('');
   }
@@ -1069,6 +1146,19 @@ Composio Product Operations Team</div>
     catFilter.appendChild(opt);
   });
 
+  // Helper for Vibrant Auth Tags
+  function renderAuthTags(authList) {
+    return authList.map(a => {
+      let cls = 'auth-key';
+      if (a === 'OAuth2') cls = 'auth-oauth';
+      else if (a === 'Basic Auth') cls = 'auth-basic';
+      else if (a === 'Bearer Token') cls = 'auth-bearer';
+      else if (a === 'JWT') cls = 'auth-jwt';
+      else if (a.includes('CLI') || a.includes('None')) cls = 'auth-cli';
+      return `<span class="auth-tag ${cls}">${a}</span>`;
+    }).join('');
+  }
+
   // Render Matrix Table
   function renderMatrix(records) {
     const tbody = document.getElementById('matrixTableBody');
@@ -1080,24 +1170,24 @@ Composio Product Operations Team</div>
       else if (r.buildability_verdict.includes('Partner')) bPill = 'pill-orange';
       else if (r.buildability_verdict.includes('Not') || r.buildability_verdict.includes('CLI')) bPill = 'pill-red';
 
-      const authTags = (r.auth_methods || []).map(a => `<span class="auth-tag">${a}</span>`).join('');
+      const authTags = renderAuthTags(r.auth_methods || []);
       const mcpDisplay = (r.mcp_status && r.mcp_status !== 'None Found')
-        ? `<a href="${r.mcp_link || '#'}" target="_blank" style="color:var(--blue); font-family:var(--font-mono); font-size:11px; font-weight:500;">${r.mcp_status} &nearr;</a>`
-        : '<span style="color:var(--text-disabled); font-family:var(--font-mono); font-size:11px;">None</span>';
+        ? `<a href="${r.mcp_link || '#'}" target="_blank" style="color:var(--blue); font-family:var(--font-mono); font-size:11px; font-weight:600;">${r.mcp_status} &nearr;</a>`
+        : '<span style="color:var(--text-dark); font-family:var(--font-mono); font-size:11px;">None</span>';
 
       return `
         <tr>
-          <td style="font-family:var(--font-mono); color:var(--text-disabled);">${r.id}</td>
-          <td style="font-weight:600; color:#fff;">${r.app_name}</td>
-          <td>${r.category}</td>
+          <td style="font-family:var(--font-mono); color:var(--text-dim);">${r.id}</td>
+          <td style="font-weight:700; color:#fff;">${r.app_name}</td>
+          <td style="color:var(--text-muted);">${r.category}</td>
           <td>${authTags}</td>
-          <td style="font-size:12px;">${r.access_tier}</td>
-          <td style="font-family:var(--font-mono); font-size:11px;">${r.api_surface}</td>
+          <td style="font-size:12px; color:var(--text-muted);">${r.access_tier}</td>
+          <td style="font-family:var(--font-mono); font-size:11px; color:#cbd5e1;">${r.api_surface}</td>
           <td>${mcpDisplay}</td>
           <td><span class="pill ${bPill}">${r.buildability_verdict.split('—')[0].trim()}</span></td>
-          <td style="font-size:11.5px; color:${r.main_blocker === 'None' ? 'var(--text-disabled)' : 'var(--text-secondary)'};">${r.main_blocker}</td>
+          <td style="font-size:12px; color:${r.main_blocker === 'None' ? 'var(--text-dark)' : 'var(--text-muted)'};">${r.main_blocker}</td>
           <td>
-            <a href="${r.evidence_url}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-mono); font-size:11px; color:var(--text-tertiary);">
+            <a href="${r.evidence_url}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-mono); font-size:11.5px; font-weight:500; color:var(--blue);">
               Docs &nearr;
             </a>
           </td>
@@ -1202,6 +1292,10 @@ def build_site():
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(html_output)
 
+    # Also keep index_professional.html updated with same high-contrast build
+    with open(SITE_DIR / "index_professional.html", "w", encoding="utf-8") as f:
+        f.write(html_output)
+
     data_json_path = SITE_DIR / "data.json"
     with open(data_json_path, "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2, ensure_ascii=False)
@@ -1232,6 +1326,7 @@ def build_site():
 
     console.print(f"[bold green]Site build complete![/bold green] Generated files in {SITE_DIR}:")
     console.print(f"  - index.html ({len(html_output)} bytes)")
+    console.print(f"  - index_professional.html ({len(html_output)} bytes)")
     console.print(f"  - data.json ({len(json.dumps(records))} bytes)")
     console.print(f"  - llms.txt ({len(llms_summary)} bytes)")
 
