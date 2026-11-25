@@ -74,9 +74,9 @@ Across 10 categories and every common auth pattern:
 | Metric | Value | What It Means |
 |---|---|---|
 | **Self-Serve Rate** | **71%** | 71 of 100 apps give developers instant free credentials — these are sprint-ready |
-| **OAuth2 Dominance** | **69 apps** | The standard auth flow; Composio's OAuth2 engine covers the majority |
-| **API Key Coverage** | **67 apps** | Second most common; trivial to integrate as agent tool headers |
-| **MCP Whitespace** | **85%** | Only 15 apps have any MCP server — massive first-mover opportunity |
+| **OAuth2 Dominance** | **72 apps** | The standard auth flow; Composio's OAuth2 engine covers the majority |
+| **API Key Coverage** | **68 apps** | Second most common; trivial to integrate as agent tool headers |
+| **MCP Whitespace** | **76%** | Only 24 apps have documented MCP servers — massive first-mover opportunity |
 | **Easy Wins** | **69 apps** | Can be built into agent toolkits today with zero partnership friction |
 | **Already in Composio** | **64 apps** | Composio's existing catalog already covers 64 of the 100 requested apps |
 
@@ -86,7 +86,7 @@ Across 10 categories and every common auth pattern:
 
 2. **The bottleneck is credentials, not code.** For the ~20 apps that aren't Easy Wins, the blocker is almost never "the API is too complex." It's "you need a sales call" (DealCloud, PitchBook) or "you need a paid plan" (Ahrefs, Bright Data). This means Product Ops outreach, not engineering effort, is the unlock.
 
-3. **85% MCP whitespace = Composio's strategic moat.** Only 15 apps have documented MCP servers on GitHub. The other 85 are entirely unserved. If Composio ships managed MCP wrappers for even the Easy Win tier, it instantly becomes the default MCP gateway for AI agent developers.
+3. **76% MCP whitespace = Composio's strategic moat.** Only 24 apps have documented MCP servers on GitHub (7 official, 17 community). The other 76 are unserved. If Composio ships managed MCP wrappers for even the Easy Win tier, it instantly becomes the default MCP gateway for AI agent developers.
 
 4. **CRM, Productivity, and Developer Infra are the highest-velocity categories.** Nearly 100% self-serve across these three. Marketing/Ads and Finance have the most gating friction.
 

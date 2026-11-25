@@ -726,12 +726,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
     <div class="kpi-card kpi-card-oauth">
       <div class="kpi-label">OAuth2 Dominance</div>
-      <div class="kpi-value val-oauth" id="kpi-oauth">69%</div>
+      <div class="kpi-value val-oauth" id="kpi-oauth">72%</div>
       <div class="kpi-sub">Standard authorization protocol</div>
     </div>
     <div class="kpi-card kpi-card-mcp">
       <div class="kpi-label">MCP Whitespace</div>
-      <div class="kpi-value val-mcp" id="kpi-mcp">85%</div>
+      <div class="kpi-value val-mcp" id="kpi-mcp">76%</div>
       <div class="kpi-sub">Lack public MCP servers on GitHub</div>
     </div>
     <div class="kpi-card kpi-card-accuracy">
