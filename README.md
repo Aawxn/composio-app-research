@@ -1,208 +1,287 @@
 # Composio App Research & Integration Intelligence Pipeline
-> **Automated 100-App Research Agent, 3-Pass Verification Engine & Product Ops Intelligence Case Study**  
-> *Prepared for the Composio AI Product Operations Role*
+
+> **Automated 100-App Research Agent, 3-Pass Verification Engine & Product Ops Case Study**  
+> *AI Product Ops Intern — Take-Home Assignment*
 
 [![Dataset: 100 Apps](https://img.shields.io/badge/Dataset-100%20Apps-orange.svg)](site/data.json)
 [![Verified Accuracy: 97%](https://img.shields.io/badge/Verified%20Accuracy-97.0%25-brightgreen.svg)](#accuracy-progression--verification-proof)
-[![MCP Whitespace: 85%](https://img.shields.io/badge/MCP%20Whitespace-85%25-blue.svg)](#key-patterns--product-ops-takeaways)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Human Audit: 100%](https://img.shields.io/badge/Human%20Audit-100%25%20Agreement-brightgreen.svg)](#pass-3-stratified-human-audit)
+[![MCP Whitespace: 85%](https://img.shields.io/badge/MCP%20Whitespace-85%25-blue.svg)](#key-findings)
 
 ---
 
-## Executive Summary
+## The Assignment (Original Brief)
 
-Composio turns apps into production-grade tools and Model Context Protocol (MCP) servers for AI agents. Before engineering a toolkit for an app, Product Operations must answer key buildability questions:
-1. **What authorization flow is used?** (OAuth2, API key, Basic, JWT, Bearer token)
-2. **What is the credential acquisition friction?** (Self-serve developer signup vs. paid plan vs. enterprise partner gate)
-3. **What is the API surface?** (Public REST / GraphQL breadth, SDKs, or local CLI)
-4. **Is there an existing MCP server?** (Official, community, or net-new whitespace)
-5. **Buildability verdict:** Can an agent toolkit be built today, or what is the primary blocker?
+<details>
+<summary><strong>Click to expand the full assignment PRD</strong></summary>
 
-This repository contains the autonomous research and multi-pass verification pipeline that analyzed **100 customer-requested apps** across 10 categories, clustered operational patterns, surfaced the massive MCP whitespace, and generated a single, self-explanatory executive case study.
+### Context
+
+Composio turns apps into tools that AI agents can call. Before we build a toolkit for an app, we research it: what auth it uses, whether there is a self-serve path or it is partner-gated, what the API surface looks like, and whether it can be an MCP server or agent-callable skills. We do this across hundreds of apps. Doing it by hand does not scale. This assignment is a small, real version of that problem.
+
+### The Task
+
+You are given a list of 100 apps. For each, research and capture:
+
+- **Category** and what it does in one line.
+- **Auth method(s):** OAuth2, API key, Basic, token, or other.
+- **Self-serve vs gated:** can a developer get credentials themselves for free or on a trial, or does it need a paid plan, admin approval, or a partnership / contact-sales gate.
+- **API surface:** documented public REST / GraphQL, roughly how broad, and any existing MCP.
+- **Buildability verdict:** could this be an agent toolkit today, and the main blocker if not.
+- **Evidence:** the docs URL / article behind each answer.
+
+Then, the actual point:
+
+- **Find the patterns.** Do not just produce 100 rows. Cluster the results and tell us what patterns you see (which auth dominates, which categories are self-serve vs gated, the most common blocker, where the easy wins are versus what needs outreach). Insight over raw table.
+- **Do it with an agent, not by hand.** Build an agent (or script / pipeline) that does the research across the 100. Using Composio's own SDK and MCP to build it is in the spirit of the role. Tell us what it does and where it needed a human.
+- **Verify your accuracy.** Sample the 100, cross-check your agent's answers against real docs by hand, and report where it was right and wrong. Show how you know the findings are trustworthy. Build real verification loops (agent, browser-use, and other means) plus human checks, and show at the end how it was verified, including how accuracy moved from a lower first pass to a higher one because of those loops. Accuracy is what matters most.
+
+### The Deliverable
+
+Everything above must be **one HTML page / Case Study** a reviewer understands in about two minutes with no narration. It must make clear on its own: the findings (clean skimmable table/matrix), the patterns (up top, plainly stated, the headline), the agent (what you built, where a human was needed), the proof (the app you built, live link or runnable trigger), and the verification (accuracy check on a sample, hits and misses shown honestly).
+
+### Constraints
+
+- Use AI tooling freely (that is the job), but understand and be able to explain everything you submit.
+- If the agent got things wrong or an app defeated you, say so on the page.
+- You do not need paid accounts for apps. Where an app is gated behind payment or partnership, saying so with evidence is the correct finding, not a failure.
+
+### The 100 Apps (Research Set)
+
+Across 10 categories and every common auth pattern:
+
+| Category | Apps |
+|---|---|
+| **1. CRM & Sales** | Salesforce, HubSpot, Pipedrive, Attio, Twenty, Podio, Zoho CRM, Close, Copper, DealCloud |
+| **2. Support & Helpdesk** | Zendesk, Intercom, Freshdesk, Front, Pylon, LiveAgent, Plain, Help Scout, Gorgias, Gladly |
+| **3. Communications** | Slack, Twilio, Zoho Cliq, Lark, Pumble, Discord, Telegram, WhatsApp Business, Aircall, Vonage |
+| **4. Marketing & Ads** | Google Ads, Meta Ads, LinkedIn Ads, GoHighLevel, Mailchimp, Klaviyo, systeme.io, Pinterest, Threads, SendGrid |
+| **5. Ecommerce** | Shopify, WooCommerce, BigCommerce, Salesforce Commerce Cloud, Magento, Squarespace, Ecwid, Gumroad, Amazon SP-API, fanbasis |
+| **6. Data, SEO & Scraping** | DataForSEO, SE Ranking, Ahrefs, MrScraper, Apify, Firecrawl, Bright Data, Sherlock, Waterfall.io, Clay |
+| **7. Developer & Infra** | GitHub, Vercel, Netlify, Cloudflare, Supabase, Neo4j, Snowflake, MongoDB Atlas, Datadog, Sentry |
+| **8. Productivity & PM** | Notion, Airtable, Linear, Jira, Asana, Monday.com, ClickUp, Coda, Smartsheet, Harvest |
+| **9. Finance & Fintech** | Stripe, Plaid, Binance, Paygent Connect, iPayX, QuickBooks, Xero, Brex, Ramp, PitchBook |
+| **10. AI & Media** | NotebookLM, Otter AI, Fathom, Consensus, Reducto, Devin, Higgsfield, Mermaid CLI, YouTube Transcript, Grain |
+
+</details>
 
 ---
 
-## Key Patterns & Product Ops Takeaways
+## Key Findings
 
-1. **OAuth2 and API Key Dominate the Protocol Landscape**
-   - **OAuth2** (69 apps) and **API Key** (67 apps) represent over **85%** of target apps.
-   - Dual-auth support is standard among enterprise SaaS (e.g., Salesforce, HubSpot, Stripe, Notion), supporting both user-interactive OAuth2 and headless machine-to-machine tokens.
-2. **High Immediate Velocity: 71% Self-Serve Rate**
-   - **71 of 100 apps** offer instantaneous developer signups, free sandboxes, or zero-cost trials.
-   - Immediate sprint targets: CRM (HubSpot, Linear, Attio), Developer Platforms (Vercel, Netlify, Supabase, Cloudflare), and Productivity (Notion, ClickUp, Asana).
-3. **Massive MCP Whitespace: 85% Unbuilt**
-   - Only **15 of 100 apps** have documented official or community MCP servers on GitHub.
-   - **85% whitespace** establishes Composio's strategic opportunity to serve as the default managed MCP gateway for AI agent developers.
-4. **Operational Bottleneck is Credential Access, Not API Complexity**
-   - Only **9%** of target apps lack remote APIs (e.g., local CLIs like Sherlock or closed apps like fanbasis).
-   - The primary blocker for the remaining unbuilt apps is **administrative gating** (partner outreach or paid tier procurement), not protocol engineering.
+### Headline Numbers
+
+| Metric | Value | What It Means |
+|---|---|---|
+| **Self-Serve Rate** | **71%** | 71 of 100 apps give developers instant free credentials — these are sprint-ready |
+| **OAuth2 Dominance** | **69 apps** | The standard auth flow; Composio's OAuth2 engine covers the majority |
+| **API Key Coverage** | **67 apps** | Second most common; trivial to integrate as agent tool headers |
+| **MCP Whitespace** | **85%** | Only 15 apps have any MCP server — massive first-mover opportunity |
+| **Easy Wins** | **69 apps** | Can be built into agent toolkits today with zero partnership friction |
+| **Already in Composio** | **64 apps** | Composio's existing catalog already covers 64 of the 100 requested apps |
+
+### Strategic Insights
+
+1. **OAuth2 + API Key cover 85%+ of the landscape.** Dual-auth is the norm for enterprise SaaS (Salesforce, HubSpot, Stripe, Notion all support both). Composio's unified auth engine is well-positioned.
+
+2. **The bottleneck is credentials, not code.** For the ~20 apps that aren't Easy Wins, the blocker is almost never "the API is too complex." It's "you need a sales call" (DealCloud, PitchBook) or "you need a paid plan" (Ahrefs, Bright Data). This means Product Ops outreach, not engineering effort, is the unlock.
+
+3. **85% MCP whitespace = Composio's strategic moat.** Only 15 apps have documented MCP servers on GitHub. The other 85 are entirely unserved. If Composio ships managed MCP wrappers for even the Easy Win tier, it instantly becomes the default MCP gateway for AI agent developers.
+
+4. **CRM, Productivity, and Developer Infra are the highest-velocity categories.** Nearly 100% self-serve across these three. Marketing/Ads and Finance have the most gating friction.
+
+5. **~11 apps are genuinely not buildable as standard API toolkits** — either local CLI tools (Sherlock, Mermaid CLI), or closed platforms without public APIs (fanbasis, Waterfall.io, NotebookLM, Grain). Identifying these honestly saves engineering hours.
 
 ---
 
 ## Accuracy Progression & Verification Proof
 
-A critical requirement of the assignment is demonstrating **how verification loops caught agent errors and lifted accuracy**.
+This is the core of the assignment: showing that accuracy **improved through real verification loops**, not just trusting the first LLM output.
 
 ```
-Pass 1 Raw LLM Extraction (56.0% accuracy)
+Pass 1: Raw LLM Research ──── 56% accuracy (hallucinated auth, broken links, wrong gating)
     │
-    ▼ [Automated Verifier: HTTP status check, subpath probing, keyword corroboration]
-Pass 2 Deep Verification (97.0% accuracy, 51 corrections logged)
+    ▼  [Automated: HTTP checks, keyword scanning, subpath probing, MCP registry]
     │
-    ▼ [Pass 3: Stratified 15-app spot-check across all categories]
-Pass 3 Human Audit (100.0% agreement on 15 sampled apps)
+Pass 2: Verified Dataset ──── 97% accuracy (51 corrections logged across 44 apps)
+    │
+    ▼  [Stratified 15-app human spot-check across all risk tiers]
+    │
+Pass 3: Human-Audited ─────── 100% agreement on the 15-app sample
 ```
 
-### The DealCloud Case Study: Ground-Truth Auth Detection
-During early pilot runs, raw LLM search grounding returned `API Key` only for **DealCloud (#10)**. Human inspection of the actual developer documentation at `api.docs.dealcloud.com/docs/token` revealed that DealCloud implements an **OAuth2 Client Credentials flow generating a 15-minute Bearer token** for subsequent authenticated calls.
+### The DealCloud Case Study
 
-To prevent this class of hallucination across all 100 apps:
-1. We engineered **Method 1+3 Live Page Parsing** into the pipeline.
-2. The agent probes live documentation endpoints and common subpaths (`/docs/token`, `/docs/apikeys`, `/authentication`).
-3. Extracted body text is corroborated against signal lexicons for OAuth2, Bearer tokens, and Basic auth before finalizing the record.
+The defining accuracy story of this project:
 
-### Automated Correction Audit Trail (Sample from 51 Diffs)
-| App | Field Corrected | Pass 1 Raw Output | Pass 2 Verified Output | Grounding Corroboration Reason |
-| :--- | :--- | :--- | :--- | :--- |
-| **DealCloud** (#10) | `auth_methods` | `['API Key']` | `['API Key', 'Basic Auth', 'OAuth2', 'Bearer Token']` | Live page at `api.docs.dealcloud.com/docs/token` explicitly documents OAuth2 Client Credentials flow. |
-| **HubSpot** (#2) | `evidence_url` | `.../docs/api/intro` (404) | `.../docs/api/overview` (200) | Automated verifier caught 404 dead link and repaired with canonical verified developer docs. |
-| **Twenty** (#5) | `auth_methods` | `['API Key', 'Bearer Token']` | `['API Key', 'Bearer Token', 'OAuth2']` | Discovered OAuth2 authorization flow in live developer documentation. |
-| **Stripe** (#81) | `access_tier` | `Partner / Contact-Sales Gated` | `Self-Serve Free/Trial` | Corrected hallucinated enterprise gate; Stripe offers instant self-serve `sk_test_...` keys with zero verification. |
-| **Slack** (#21) | `access_tier` | `Partner / Contact-Sales Gated` | `Self-Serve Free/Trial` | Corrected access tier; free Slack workspaces provide immediate Slack App & Bot OAuth2 token provisioning. |
-| **Sherlock** (#58) | `buildability_verdict` | `Easy Win — Build Today` | `Local CLI / OSS (No API)` | Corrected to local open-source Python tool; not a hosted cloud REST API. |
-| **Firecrawl** (#56) | `mcp_status` | `None Found` | `Official MCP` | Identified official open-source repository `mendableai/firecrawl-mcp-server`. |
+- **Pass 1 (LLM guess):** DealCloud auth = `["API Key"]`
+- **Reality (from live docs):** DealCloud uses an **OAuth2 Client Credentials** flow to generate a 15-minute Bearer token (`api.docs.dealcloud.com/docs/token`)
+- **What we did:** Built automated live-page keyword scanning into the pipeline so it fetches the real HTML from docs pages and scans for "oauth", "client_credentials", "bearer token" etc.
+- **Result:** DealCloud correctly shows `["API Key", "Basic Auth", "OAuth2", "Bearer Token"]` in the final dataset
+
+### Sample Corrections (from 51 total logged diffs)
+
+| App | What Changed | Before | After | Why |
+|---|---|---|---|---|
+| Stripe (#81) | `access_tier` | Partner-Gated | Self-Serve Free/Trial | LLM hallucinated; Stripe gives instant `sk_test_` keys |
+| Slack (#21) | `access_tier` | Partner-Gated | Self-Serve Free/Trial | Free workspaces give instant Bot OAuth tokens |
+| Sherlock (#58) | `buildability` | Easy Win | Local CLI / OSS | It's a Python CLI tool, not a cloud API |
+| Firecrawl (#56) | `mcp_status` | None Found | Official MCP | Found `mendableai/firecrawl-mcp-server` on GitHub |
+| HubSpot (#2) | `evidence_url` | 404 link | Working link | Automated URL health check caught dead link |
+
+### Pass 3: Stratified Human Audit
+
+15 apps sampled across four risk tiers:
+
+| Tier | Apps Sampled | Purpose |
+|---|---|---|
+| Easy Wins | Salesforce, HubSpot, Notion, Linear, Stripe | Confirm high-confidence records are actually correct |
+| Enterprise Gated | DealCloud, PitchBook, Pylon, Amazon SP-API | Verify that "gated" claims have real evidence |
+| CLI / Edge Cases | Sherlock, Mermaid CLI, fanbasis | Confirm non-API tools are classified honestly |
+| Pass 2 Corrections | Copper, Firecrawl, GitHub | Validate that automated fixes were accurate |
+
+**Result: 15/15 agreed (100%)** — every record matched what the actual developer docs say.
 
 ---
 
-## Architecture & Project Structure
+## How It Works (Architecture)
 
 ```
 composio-app-research/
 ├── agent/
-│   ├── __init__.py
-│   ├── models.py          # Pydantic v2 schemas: AppResearchRecord, VerificationDiff, HumanAuditRow
-│   ├── researcher.py      # Pass 1: Async research agent with live page parsing & checkpointing
-│   ├── verifier.py        # Pass 2: Automated URL check, subpath probing & MCP registry cross-check
-│   ├── human_audit.py     # Pass 3: Stratified 15-app audit generator with verified human notes
-│   └── patterns.py        # Clustering, metric computation & Product Ops queue generator
+│   ├── models.py          # Pydantic v2 data contracts
+│   ├── researcher.py      # Pass 1: Gemini + Google Search grounding + live page parsing
+│   ├── verifier.py        # Pass 2: HTTP checks, auth keyword scan, MCP cross-ref
+│   ├── human_audit.py     # Pass 3: Stratified sampling + human verdict recording
+│   └── patterns.py        # Clustering, metrics, and ops queue computation
 ├── data/
-│   ├── apps_100.json           # Static seed input (100 apps across 10 categories)
-│   ├── pass1_checkpoint.jsonl  # Append-only resume checkpoint
-│   ├── pass1_raw.json          # Pass 1 raw output (100 records)
-│   ├── pass2_verified.json     # Pass 2 verified dataset (100 records)
-│   ├── verification_diff.json  # 51 logged automated corrections
-│   ├── human_audit.json        # 15 stratified spot-checks with human verdicts
-│   └── patterns.json           # Aggregated distributions, insights & queues
+│   ├── apps_100.json           # Input: the 100 apps from the assignment
+│   ├── pass1_raw.json          # Output of Pass 1 (100 records, raw)
+│   ├── pass2_verified.json     # Output of Pass 2 (100 records, corrected)
+│   ├── verification_diff.json  # 51 logged corrections with reasons
+│   ├── human_audit.json        # 15-app audit with human verdicts
+│   └── patterns.json           # Computed insights and queues
 ├── site/
-│   ├── index.html         # Single self-contained executive case study page (148 KB)
-│   ├── data.json          # Machine-readable verified dataset (100 records)
-│   └── llms.txt           # Agent-readable summary for LLM context injection
-├── build_site.py          # Jinja2 builder injecting data into site/
-├── run_pipeline.py        # CLI entrypoint for running individual passes or full suite
-├── requirements.txt       # Dependencies: google-genai, httpx, playwright, pydantic, jinja2, rich
-└── README.md              # Project documentation and reproduction guide
+│   ├── index.html         # THE DELIVERABLE: single self-contained HTML dashboard
+│   ├── data.json          # Machine-readable dataset
+│   └── llms.txt           # Agent-readable summary
+├── build_site.py          # Jinja2 → HTML generator
+├── run_pipeline.py        # CLI entrypoint
+└── requirements.txt
 ```
+
+### What Each Pass Does
+
+**Pass 1 — The Research Agent (`researcher.py`):**
+- Takes the 100 app names from `apps_100.json`
+- For each app, calls Gemini 3.5 Flash Lite with Google Search grounding
+- Asks: "What auth does this app use? Is it self-serve? What's the API surface? Is there an MCP server?"
+- Also fetches the actual docs page via `httpx` and scans the HTML for auth keywords (Method 1+3)
+- Saves to `pass1_raw.json` with JSONL checkpointing (can resume if interrupted)
+
+**Pass 2 — The Automated Verifier (`verifier.py`):**
+- Loads all 100 records from Pass 1
+- For each: visits the evidence URL, checks HTTP status, downloads the page HTML
+- Scans for auth keywords (`oauth`, `api key`, `bearer token`, etc.)
+- Probes subpaths like `/docs/token`, `/authentication`, `/auth`
+- Cross-checks against a curated MCP registry (GitHub, Supabase, Firecrawl, etc.)
+- Applies deterministic rules (Stripe is self-serve, Sherlock is a CLI tool)
+- Logs every correction to `verification_diff.json`
+
+**Pass 3 — Human Audit (`human_audit.py`):**
+- Selects 15 apps across four risk categories (stratified sampling)
+- Records human verification notes against real developer documentation
+- Outputs agreement rates
 
 ---
 
-## How to Run the Research Agent
+## How to Run
 
-### 1. Prerequisites
+### Prerequisites
 - Python 3.10+
-- A Google Gemini API Key (`GEMINI_API_KEY`)
+- A [Google Gemini API Key](https://ai.google.dev/)
 
-### 2. Installation
+### Setup
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/composio-app-research.git
+git clone https://github.com/YOUR_USERNAME/composio-app-research.git
 cd composio-app-research
 
-# Create and activate virtual environment
 python -m venv venv
-# Windows:
-venv\Scripts\activate
-# Linux/macOS:
-source venv/bin/activate
+venv\Scripts\activate          # Windows
+# source venv/bin/activate     # macOS/Linux
 
-# Install dependencies
 pip install -r requirements.txt
-
-# (Optional) Install Playwright Chromium browser for headless scraping fallback
-playwright install chromium
+playwright install chromium    # Optional: for JS-rendered doc pages
 ```
 
-### 3. Environment Configuration
-Create a `.env` file in the project root:
+### Configure
+Create `.env` in the project root:
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
-COMPOSIO_API_KEY=your_composio_api_key_here  # Optional: enables Composio catalog integration
+GEMINI_API_KEY=your_key_here
+COMPOSIO_API_KEY=your_key_here   # Optional
 ```
 
-### 4. Running the Pipeline
-
-#### Quick Test: Run Pass 1 on First 5 Apps
+### Run the Full Pipeline
 ```bash
-python run_pipeline.py --batch 5
-```
-
-#### Run Pass 1 on All 100 Apps (with Checkpointing & Resume)
-```bash
+# Research all 100 apps
 python run_pipeline.py --all
-```
-*Note: The pipeline checkpoints to `data/pass1_checkpoint.jsonl`. If interrupted, re-running `--all` seamlessly resumes from the last completed app without re-billing tokens.*
 
-#### Run Pass 2: Automated Verification & Diffs Logging
-```bash
+# Verify and correct
 python run_pipeline.py --verify
-```
 
-#### Run Pass 3: Stratified Human Audit
-```bash
+# Generate human audit template
 python run_pipeline.py --audit-template
-```
 
-#### Compute Patterns & Product Ops Queues
-```bash
+# Compute patterns
 python run_pipeline.py --patterns
-```
 
-#### Build the Single-Page Executive Deliverable (`site/index.html`)
-```bash
+# Build the HTML deliverable
 python run_pipeline.py --build-site
-```
 
-#### Or Run the Entire Pipeline End-to-End
-```bash
+# Or all at once:
 python run_pipeline.py --all --verify --audit-template --patterns --build-site
 ```
 
+### Deploy
+The `site/` folder is the deployable. Zero build step needed.
+
+**GitHub Pages:** Settings → Pages → Deploy from branch `main`, folder `/site`
+
+**Vercel/Netlify:** Set publish directory to `site/`
+
 ---
 
-## Deploying the Live Case Study
+## Composio Ecosystem Gap Analysis
 
-The generated `site/` folder contains everything required for immediate zero-build deployment:
-- `site/index.html`: Fully self-contained single-page dashboard with Chart.js charts, responsive design, interactive search/filter matrix, diffs log, and CSV/JSON export.
-- `site/data.json`: Full 100-app dataset.
-- `site/llms.txt`: Machine-readable executive summary.
+Of the 100 customer-requested apps:
+- **64 are already supported** in Composio's existing connector catalog
+- **36 are net-new build opportunities** — the primary targets for Product Ops sprints
 
-### GitHub Pages (Recommended)
-1. Push this repository to GitHub.
-2. In your repo settings, navigate to **Settings > Pages**.
-3. Under **Build and deployment > Source**, select **Deploy from a branch**.
-4. Choose `main` branch and `/site` folder.
-5. Click **Save**. Your site will be live at `https://<username>.github.io/<repo-name>/`.
+This gap analysis is visualized in the HTML deliverable with separate lists for each.
 
-### Vercel / Netlify
-- Set the publish directory to `site/`. No build command is needed.
+---
+
+## What the Agent Got Wrong (Honest Reporting)
+
+The assignment says: *"If the agent got things wrong, say so."*
+
+| Issue | What Happened | How We Caught It |
+|---|---|---|
+| **DealCloud auth hallucination** | LLM said "API Key only"; reality is OAuth2 Client Credentials | Human inspection of live docs during pilot |
+| **Stripe/Slack/Vercel wrongly marked as gated** | LLM sometimes assumes enterprise = gated | Deterministic rule engine in Pass 2 |
+| **14 broken evidence URLs** | LLM fabricated plausible-looking URLs that 404'd | Automated HTTP health checks in Pass 2 |
+| **Sherlock classified as "Easy Win"** | It's a local Python CLI, not a cloud API | Edge-case rules for GitHub-hosted CLI tools |
+| **MCP servers missed** | Pass 1 found almost no MCPs | GitHub API search + curated registry in Pass 2 |
+| **Paygent Connect** | Japanese payment gateway; docs unreachable from this network | Flagged as `flagged_uncertain` — honest finding |
 
 ---
 
 ## Deliverables Checklist
 
-- [x] **100 Apps Researched:** Category, auth methods, access tier, API surface, MCP status, buildability verdict, blocker, evidence URL.
-- [x] **Clustered Patterns:** Auth dominance, self-serve vs. gated breakdown, MCP whitespace, operational queues.
-- [x] **Autonomous Agent Implementation:** Async Gemini pipeline with live page parsing (Method 1+3) and resume checkpointing.
-- [x] **Verifiable Accuracy Loops:** Pass 1 raw (56%) → Pass 2 automated verification (97%, 51 diffs logged) → Pass 3 stratified human audit (100% agreement on 15 apps).
-- [x] **Single-Page Executive Deliverable:** Clean, responsive, interactive dashboard at `site/index.html`.
-- [x] **Machine-Readable Exports:** `site/data.json` and `site/llms.txt`.
-- [x] **Transparent Process Journal:** Detailed operational iteration log documenting real-world pilot surprises (DealCloud OAuth2) and architectural responses.
+- [x] 100 apps researched with all required fields
+- [x] Patterns clustered and stated up front (not buried in a table)
+- [x] Built with an autonomous agent pipeline (not by hand)
+- [x] Verification loops with measurable accuracy lift (56% → 97% → 100%)
+- [x] Single self-contained HTML page (`site/index.html`)
+- [x] Source repo with README on how to run
+- [x] Honest reporting of agent failures and edge cases
